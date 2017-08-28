@@ -18,10 +18,19 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css'
+        'css/site.css',
+        'template/vendor/bootstrap/css/bootstrap.min.css',
+        'template/vendor/metisMenu/metisMenu.min.css',
+        'template/dist/css/sb-admin-2.css',
+        'template/vendor/font-awesome/css/font-awesome.min.css'
+        
 
     ];  
     public $js = [
+        'template/vendor/jquery/jquery.min.js',
+        'template/vendor/bootstrap/js/bootstrap.min.js',
+        'template/vendor/metisMenu/metisMenu.min.js',
+        'template/dist/js/sb-admin-2.js'
 
     ];
     public $depends = [

@@ -7,9 +7,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppLeviSet;
+use app\assets\AppAsset;
+use yii\bootstrap\Dropdown;
+use yii\grid\GridView;
 
-AppLeviSet::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -46,35 +48,119 @@ AppLeviSet::register($this);
       }
       .row.content {height: auto;} 
     }
+ /*   header{
+      background-color: black;
+      width: 100%;
+      height: 50px;
+    }*/
+
+    .navbar{
+      padding: 0;
+      margin:0;
+      border-radius: 0;
+      background-color: white;
+      border-right: 0;
+      border-left: 0;
+      border-top: 0;
+      border-bottom: 1px thin;
+      border-color: whitesmoke;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
+    {
+      background-color: rgb(241,241,241);
+      color:rgb(51,122,183);
+    }
+    /*.container-fluid
+    {
+     padding-top: 70px
+    }*/
     </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav">
-      <h4>ADMIN PANEL</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Add Book</a></li>
-        <li><a href="#section2">All Books</a></li>
-        <li><a href="#section3">Family</a></li>
-        <li><a href="#section3">Photos</a></li>
-      </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
-    </div>
+<!-- <div id="wrapper">
 
-    <div class="col-sm-9">
-     
+        <!-- Navigation -->
+        
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Admin Panel</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+              
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                       
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> My Account</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                        <li>
+                            <a href="index.html"><i class="glyphicon glyphicon-book"></i> Books</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="glyphicon glyphicon-tags"></i> Category</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="glyphicon glyphicon-adjust"></i> Color</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="glyphicon glyphicon-user"></i> Accounts</a>
+                        </li>
+                       
+                       
+                       
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+                      <?= $content ?>
+                     
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
     </div>
-  </div>
-</div>
 
 <footer class="footer">
     <div class="container">
