@@ -70,6 +70,7 @@ AppAsset::register($this);
       background-color: rgb(241,241,241);
       color:rgb(51,122,183);
     }
+ 
     /*.container-fluid
     {
      padding-top: 70px

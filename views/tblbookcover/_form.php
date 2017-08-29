@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-   <?= Html::activeDropDownList($model, 'CATEGORY_ID',$items) ?>
+    
+    <?= $form->field($model, 'CATEGORY_ID')->dropDownList($items)?>
+
     <?= $form->field($model, 'COLOR_ID')->textInput() ?>
 
     <?= $form->field($model, 'BOOK_TITLE')->textInput(['maxlength' => true]) ?>
