@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;   
 use yii\web\UploadedFile; 
+use yii\data\ActiveDataProvider;
 
 
 /**
@@ -41,6 +42,21 @@ class TblbookcoverController extends Controller
     {
         $searchModel = new TblbookcoverSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        // show data where IS_ACTIVE = 1
+        $query = TblbookcoverSearch::find()->andWhere([ 'IS_ACTIVE' => 1 ]);
+        //Pagination by 5 data
+        $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [ 'pageSize' => 5 ],    // data rows to show
+                    'sort' => [                             // Sorting of data to Descending order
+                        'defaultOrder' => [                
+                            'BOOKCOVER_ID' => SORT_DESC,    // Sort by column_name BOOKCOVER_ID 
+                        ],
+
+                    ],
+                ]);
+        
 
         return $this->render('index', [
             'searchModel' => $searchModel,
