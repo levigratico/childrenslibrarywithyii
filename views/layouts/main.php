@@ -122,16 +122,34 @@ AppAsset::register($this);
                     <ul class="nav" id="side-menu"> 
                         
                         <li>
-                            <a href="index.php?r=tblbookcover%2Findex"><i class="glyphicon glyphicon-book"></i> Books</a>
+                            <a href="#"><i class="glyphicon glyphicon-book"></i>&nbsp; Books</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?= Url::to('index.php?r=tblbookcover%2Findex')?>">Cover page/Information</a>
+                                </li>
+                                <li>
+                                    <a href="#">Upload Content</a>
+                                </li>
+                            </ul>
+
                         </li>
                         <li>
-                            <a href="<?= Url::to('index.php?r=category%2Findex')?>"><i class="glyphicon glyphicon-tags"></i> Category</a>
+                            <a href="#"><i class="glyphicon glyphicon-tags"></i> &nbsp;Category</a>
+                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?= Url::to('index.php?r=category%2Findex')?>">List</a>
+                                </li>
+                                <li>
+                                    <a href="#">Content</a>
+                                </li>
+                            </ul>
+
                         </li>
                         <li>
-                            <a href="index.html"><i class="glyphicon glyphicon-adjust"></i> Color</a>
+                            <a href="index.html"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Color</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="glyphicon glyphicon-user"></i> Accounts</a>
+                            <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
                         </li>
                        
                        

@@ -7,7 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TblbookcoverSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tbl Book Covers';
+
+$this->title = 'Book covers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-book-cover-index">
@@ -16,17 +17,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tbl Book Cover', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Book Cover', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'BOOKCOVER_ID',
-            'CATEGORY_ID',
-            'COLOR_ID',
+            [
+                'attribute' => 'CATEGORY_ID',
+                'value' => 'category.CATEGORY_TITLE',
+            ],
+            [
+                'attribute' => 'COLOR_ID',
+                'value' => 'color.COLOR_NAME',
+            ],
             'BOOK_TITLE',
             'BOOK_AUTHOR',
             [

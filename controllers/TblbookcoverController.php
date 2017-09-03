@@ -6,6 +6,8 @@ namespace app\controllers;
 use Yii;
 use app\models\TblBookCover;
 use app\models\TblbookcoverSearch;
+use app\models\TblCategory;
+use app\models\TblLanguage;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,6 +47,7 @@ class TblbookcoverController extends Controller
 
         // show data where IS_ACTIVE = 1
         $query = TblbookcoverSearch::find()->andWhere([ 'IS_ACTIVE' => 1 ]);
+        
         //Pagination by 5 data
         $dataProvider = new ActiveDataProvider([
                     'query' => $query,
@@ -108,14 +111,30 @@ class TblbookcoverController extends Controller
             $query = new \yii\db\Query;
             $query->select('CATEGORY_ID, CATEGORY_TITLE')
             ->from('tbl_category');
-            $command = $query->createCommand();
-            $rows = $command->queryAll();
-            $items = ArrayHelper::map($rows, 'CATEGORY_ID', 'CATEGORY_TITLE');
+            $command    = $query->createCommand();
+            $rows       = $command->queryAll();
+            $items      = ArrayHelper::map($rows, 'CATEGORY_ID', 'CATEGORY_TITLE');
+
+            $query1 = new \yii\db\Query;
+            $query1->select('COLOR_ID, COLOR_NAME')
+            ->from('tbl_color');
+            $command1   = $query1->createCommand();
+            $rows1      = $command1->queryAll();
+            $colors     = ArrayHelper::map($rows1, 'COLOR_ID', 'COLOR_NAME');
+
+            $query2 = new \yii\db\Query;
+            $query2->select('LANGUAGE_ID, LANGUAGE')
+            ->from('tbl_language');
+            $command2   = $query2->createCommand();
+            $rows2      = $command2->queryAll();
+            $language     = ArrayHelper::map($rows2, 'LANGUAGE_ID', 'LANGUAGE');
 
 
             return $this->render('create', [
                 'model' => $model,
-                'items' =>  $items
+                'items' =>  $items,
+                'colors' => $colors,
+                'language' => $language,
             ]);
         }
     }
@@ -129,19 +148,49 @@ class TblbookcoverController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-         $query = new \yii\db\Query;
+            $query = new \yii\db\Query;
             $query->select('CATEGORY_ID, CATEGORY_TITLE')
             ->from('tbl_category');
             $command = $query->createCommand();
             $rows = $command->queryAll();
             $items = ArrayHelper::map($rows, 'CATEGORY_ID', 'CATEGORY_TITLE');
 
+            $query1 = new \yii\db\Query;
+            $query1->select('COLOR_ID, COLOR_NAME')
+            ->from('tbl_color');
+            $command1   = $query1->createCommand();
+            $rows1      = $command1->queryAll();
+            $colors     = ArrayHelper::map($rows1, 'COLOR_ID', 'COLOR_NAME');
+
+            $query2 = new \yii\db\Query;
+            $query2->select('LANGUAGE_ID, LANGUAGE')
+            ->from('tbl_language');
+            $command2   = $query2->createCommand();
+            $rows2      = $command2->queryAll();
+            $language     = ArrayHelper::map($rows2, 'LANGUAGE_ID', 'LANGUAGE');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
+            return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+                'items' =>  $items,
+                'colors' => $colors,
+                'language' => $language,
+            ]);
+        }
+    }
+
+
+    public function actionUpdateImage($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = "update-image";
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
 
             $basepath = Yii::getAlias('@app');
-
-
             $imagepath= $basepath.'/web/upload/';
 
             $rand_name=rand(10,100);
@@ -159,12 +208,13 @@ class TblbookcoverController extends Controller
 
             return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
         } else {
-            return $this->render('update', [
+            return $this->render('update-image', [
                 'model' => $model,
-                'items' =>  $items
+                
             ]);
         }
     }
+
 
     /**
      * Deletes an existing TblBookCover model.

@@ -35,6 +35,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'BOOK_DESCRIPTION')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
+
+    <?= $form->field($model, 'BOOKCOVER_IMAGE')->fileInput() ?>
+   
+
   
 
     <div class="form-group">

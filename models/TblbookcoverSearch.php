@@ -66,6 +66,8 @@ class TblbookcoverSearch extends TblBookCover
             'IS_ACTIVE' => $this->IS_ACTIVE,
         ]);
 
+        
+
         $query->andFilterWhere(['like', 'BOOK_TITLE', $this->BOOK_TITLE])
             ->andFilterWhere(['like', 'BOOK_AUTHOR', $this->BOOK_AUTHOR])
             ->andFilterWhere(['like', 'BOOK_ILLUSTRATOR', $this->BOOK_ILLUSTRATOR])

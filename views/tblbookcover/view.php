@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\TblBookCover */
 
 $this->title = $model->BOOKCOVER_ID;
-$this->params['breadcrumbs'][] = ['label' => 'Tbl Book Covers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Book Covers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-book-cover-view">
@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update Book Information', ['update', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update Image', ['update-image', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->BOOKCOVER_ID], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -29,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'BOOKCOVER_ID',
-            'CATEGORY_ID',
-            'COLOR_ID',
+            'category.CATEGORY_TITLE',
+            'color.COLOR_NAME',
             'BOOK_TITLE',
             'BOOK_AUTHOR',
             'BOOK_ILLUSTRATOR',

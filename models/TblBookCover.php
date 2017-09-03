@@ -32,6 +32,7 @@ class TblBookCover extends \yii\db\ActiveRecord
      * @inheritdoc
      */
 
+
     public static function tableName()
     {
         return 'tbl_book_cover';
@@ -46,11 +47,18 @@ class TblBookCover extends \yii\db\ActiveRecord
             [['CATEGORY_ID', 'COLOR_ID', 'BOOK_TITLE', 'BOOKCOUNT_PAGES'], 'required'],
             [['CATEGORY_ID', 'COLOR_ID', 'BOOKCOUNT_PAGES'], 'integer'],
             [['BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'string'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE'], 'string', 'max' => 100],
+            [['BOOK_TITLE','CATEGORY_ID','COLOR_ID', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE'], 'string', 'max' => 100],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
             [['COLOR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblColor::className(), 'targetAttribute' => ['COLOR_ID' => 'COLOR_ID']],
             [['BOOKCOVER_IMAGE'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['update-image'] = ['image'];
+        return $scenarios;
     }
 
     /**
@@ -86,7 +94,7 @@ class TblBookCover extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCATEGORY()
+    public function getCategory()
     {
         return $this->hasOne(TblCategory::className(), ['CATEGORY_ID' => 'CATEGORY_ID']);
     }
@@ -94,10 +102,10 @@ class TblBookCover extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCOLOR()
+    public function getColor()
     {
         return $this->hasOne(TblColor::className(), ['COLOR_ID' => 'COLOR_ID']);
     }
 
-  
+
 }
