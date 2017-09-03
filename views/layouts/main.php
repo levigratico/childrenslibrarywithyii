@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\bootstrap\Dropdown;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -118,13 +119,13 @@ AppAsset::register($this);
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                    <ul class="nav" id="side-menu"> 
                         
                         <li>
-                            <a href="index.html"><i class="glyphicon glyphicon-book"></i> Books</a>
+                            <a href="index.php?r=tblbookcover%2Findex"><i class="glyphicon glyphicon-book"></i> Books</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="glyphicon glyphicon-tags"></i> Category</a>
+                            <a href="<?= Url::to('index.php?r=category%2Findex')?>"><i class="glyphicon glyphicon-tags"></i> Category</a>
                         </li>
                         <li>
                             <a href="index.html"><i class="glyphicon glyphicon-adjust"></i> Color</a>

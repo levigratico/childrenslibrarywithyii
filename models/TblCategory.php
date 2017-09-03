@@ -32,25 +32,24 @@ class TblCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['CATEGORY_TITLE', 'CATEGORY_IMAGE', 'CATEGORY_DESCRIPTION'], 'required'],
+            [['CATEGORY_TITLE'], 'required'],
             [['CATEGORY_DESCRIPTION'], 'string'],
-            [['IS_ACTIVE'], 'integer'],
             [['CATEGORY_TITLE'], 'string', 'max' => 50],
             [['CATEGORY_IMAGE'], 'string', 'max' => 100],
         ];
-    }
+    }   
 
     /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
-        return [
+        return [    
             'CATEGORY_ID' => 'Category  ID',
             'CATEGORY_TITLE' => 'Category  Title',
             'CATEGORY_IMAGE' => 'Category  Image',
             'CATEGORY_DESCRIPTION' => 'Category  Description',
-            'IS_ACTIVE' => 'Is  Active',
+            
         ];
     }
 

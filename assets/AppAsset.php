@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
 
     ];  
     public $js = [
-        'template/vendor/jquery/jquery.min.js',
+        // 'template/vendor/jquery/jquery.min.js',
         'template/vendor/bootstrap/js/bootstrap.min.js',
         'template/vendor/metisMenu/metisMenu.min.js',
         'template/dist/js/sb-admin-2.js'
