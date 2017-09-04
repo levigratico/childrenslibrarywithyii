@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tbl-book-cover-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h4><?= Html::encode($this->title) ?></h4>
+    <?= Html::a('Update Image', ['update-image', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-success']) ?>
+    
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -53,6 +53,13 @@ class TblCategory extends \yii\db\ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['update-image'] = ['image'];
+        return $scenarios;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

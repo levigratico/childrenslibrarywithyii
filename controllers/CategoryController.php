@@ -5,9 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\TblCategory;
 use app\models\CategorySearch;
+use app\models\TblCategoryContent;
+use app\models\CategorycontentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\web\UploadedFile; 
 
 /**
  * CategoryController implements the CRUD actions for TblCategory model.
@@ -51,9 +55,58 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new CategorycontentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = CategorycontentSearch::find()->andWhere([ 'CATEGORY_ID' => $id ]);
+
+        //Pagination by 5 data
+        $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [ 'pageSize' => 10 ],    // data rows to show
+                    'sort' => [                             // Sorting of data to Descending order
+                        'defaultOrder' => [                
+                            'CATEGORYCONTENT_ID' => SORT_DESC,    // Sort by column_name BOOKCOVER_ID 
+                        ],
+
+                    ],
+                ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionUpdateImage($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = "update-image";
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+             $image = UploadedFile::getInstance($model,'CATEGORY_IMAGE');
+                $basepath = Yii::getAlias('@app');
+                $imagepath= $basepath.'/web/upload/';
+                $rand_name=rand(10,100);
+
+                if ($image)
+                {
+                    $model->CATEGORY_IMAGE = "category_{$rand_name}-{$image}"; // change random name of image
+                }
+
+                    if($model->save()):
+                        if($image):
+                         $image->saveAs($imagepath.$model->CATEGORY_IMAGE);
+                        endif;
+                    endif; 
+
+            return $this->redirect(['view', 'id' => $model->CATEGORY_ID]);
+        } else {
+            return $this->render('update-image', [
+                'model' => $model,
+                
+            ]);
+        }
     }
 
     /**
@@ -65,7 +118,25 @@ class CategoryController extends Controller
     {
         $model = new TblCategory();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                $image = UploadedFile::getInstance($model,'CATEGORY_IMAGE');
+                $basepath = Yii::getAlias('@app');
+                $imagepath= $basepath.'/web/upload/';
+                $rand_name=rand(10,100);
+
+                if ($image)
+                {
+                    $model->CATEGORY_IMAGE = "category_{$rand_name}-{$image}"; // change random name of image
+                }
+
+                    if($model->save()):
+                        if($image):
+                         $image->saveAs($imagepath.$model->CATEGORY_IMAGE);
+                        endif;
+                    endif; 
+
             return $this->redirect(['view', 'id' => $model->CATEGORY_ID]);
         } else {
             return $this->render('create', [

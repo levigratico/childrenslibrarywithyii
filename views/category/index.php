@@ -26,7 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'CATEGORY_ID',
             'CATEGORY_TITLE',
-            'CATEGORY_IMAGE',
+            [
+                'attribute' => 'CATEGORY_IMAGE',
+                'format' => 'html', 
+                'label' => 'Icon',
+                'value' => function ($data) {
+                return Html::img(Yii::getAlias('@web').'/upload/'.$data['CATEGORY_IMAGE'],
+                    ['width' => '100', 
+                     'height' => '70']);
+            },
+            
+            ],
             'CATEGORY_DESCRIPTION:ntext',
             
 

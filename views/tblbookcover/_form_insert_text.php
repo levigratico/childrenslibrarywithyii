@@ -11,7 +11,9 @@ use yii\widgets\ActiveForm;
 <div>
     
 </div>
+
 <div class="tbl-book-cover-form">
+
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 

@@ -32,7 +32,7 @@ class TblCategoryContent extends \yii\db\ActiveRecord
     {
         return [
             [['CATEGORY_ID', 'CATEGORYCONTENT_NAME', 'CATEGORYCONTENT_IMAGE'], 'required'],
-            [['CATEGORY_ID', 'IS_ACTIVE'], 'integer'],
+            [['CATEGORY_ID'], 'integer'],
             [['CATEGORYCONTENT_NAME', 'CATEGORYCONTENT_IMAGE'], 'string', 'max' => 100],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
         ];

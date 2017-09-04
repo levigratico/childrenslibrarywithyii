@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\TblCategory */
 
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->CATEGORY_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update Image', ['update-image', 'id' => $model->CATEGORY_ID], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->CATEGORY_ID], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -35,5 +36,22 @@ $this->params['breadcrumbs'][] = $this->title;
             
         ],
     ]) ?>
+    
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        // 'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'CATEGORYCONTENT_ID',
+            'CATEGORY_ID',
+            'CATEGORYCONTENT_NAME',
+            'CATEGORYCONTENT_IMAGE',
+            // 'IS_ACTIVE',
+
+            // ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 
 </div>

@@ -92,7 +92,7 @@ AppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admin Panel</a>
+                <a class="navbar-brand" href="#">Admin Panel</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -140,7 +140,7 @@ AppAsset::register($this);
                                     <a href="<?= Url::to('index.php?r=category%2Findex')?>">List</a>
                                 </li>
                                 <li>
-                                    <a href="#">Content</a>
+                                    <a href="<?= Url::to('index.php?r=categorycontent%2Findex')?>">Content</a>
                                 </li>
                             </ul>
 
