@@ -31,7 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'CATEGORY_ID',
             'CATEGORY_TITLE',
-            'CATEGORY_IMAGE',
+            [
+                'attribute' => 'CATEGORY_IMAGE',
+                'format' => 'html', 
+                'label' => 'Category Image',
+                'value' => function ($data) {
+                return Html::img(Yii::getAlias('@web').'/upload/'.$data['CATEGORY_IMAGE'],
+                    ['width' => '100', 
+                     'height' => '100']);
+            },
+
+            ],
             'CATEGORY_DESCRIPTION:ntext',
             
         ],
@@ -45,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'CATEGORYCONTENT_ID',
-            'CATEGORY_ID',
+            'category.CATEGORY_TITLE',
             'CATEGORYCONTENT_NAME',
             'CATEGORYCONTENT_IMAGE',
             // 'IS_ACTIVE',

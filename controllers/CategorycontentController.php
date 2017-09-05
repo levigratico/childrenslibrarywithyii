@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\TblCategoryContent;
 use app\models\CategorycontentSearch;
+use app\models\TblCategory;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile; 
 
 
 /**
@@ -75,6 +77,23 @@ class CategorycontentController extends Controller
             $category      = ArrayHelper::map($rows, 'CATEGORY_ID', 'CATEGORY_TITLE');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                $image = UploadedFile::getInstance($model,'CATEGORYCONTENT_IMAGE');
+                $basepath = Yii::getAlias('@app');
+                $imagepath= $basepath.'/web/upload/';
+                $rand_name=rand(10,100);
+
+                if ($image)
+                {
+                    $model->CATEGORYCONTENT_IMAGE = "categorycontent_{$rand_name}-{$image}"; // change random name of image
+                }
+
+                    if($model->save()):
+                        if($image):
+                         $image->saveAs($imagepath.$model->CATEGORYCONTENT_IMAGE);
+                        endif;
+                    endif; 
+
             return $this->redirect(['view', 'id' => $model->CATEGORYCONTENT_ID]);
         } else {
             return $this->render('create', [
@@ -109,6 +128,41 @@ class CategorycontentController extends Controller
             ]);
         }
     }
+
+    public function actionUpdateImage($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = "update-image";
+           
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                $image = UploadedFile::getInstance($model,'CATEGORYCONTENT_IMAGE');
+                $basepath = Yii::getAlias('@app');
+                $imagepath= $basepath.'/web/upload/';
+                $rand_name=rand(10,100);
+
+                if ($image)
+                {
+                    $model->CATEGORYCONTENT_IMAGE = "categorycontent_{$rand_name}-{$image}"; // change random name of image
+                }
+
+                    if($model->save()):
+                        if($image):
+                         $image->saveAs($imagepath.$model->CATEGORYCONTENT_IMAGE);
+                        endif;
+                    endif; 
+
+            return $this->redirect(['view', 'id' => $model->CATEGORYCONTENT_ID]);
+        } else {
+            return $this->render('update-image', [
+                'model' => $model,
+                
+            ]);
+        }
+    }
+
+
 
     /**
      * Deletes an existing TblCategoryContent model.

@@ -25,10 +25,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'CATEGORYCONTENT_ID',
-            'CATEGORY_ID',
+            [
+                'attribute' => 'CATEGORY_ID',
+                'value' => 'category.CATEGORY_TITLE',
+            ],
             'CATEGORYCONTENT_NAME',
-            'CATEGORYCONTENT_IMAGE',
-            'IS_ACTIVE',
+            [
+                'attribute' => 'CATEGORYCONTENT_IMAGE',
+                'format' => 'html', 
+                'label' => 'Icon',
+                'value' => function ($data) {
+                return Html::img(Yii::getAlias('@web').'/upload/'.$data['CATEGORYCONTENT_IMAGE'],
+                    ['width' => '100', 
+                     'height' => '70']);
+            },
+            
+            ],
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

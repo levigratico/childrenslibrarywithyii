@@ -11,15 +11,9 @@ use yii\helpers\ArrayHelper;
 
 <div class="tbl-category-content-form">
 
-	<p>
-		<?= Html::a('Update Image', ['update-image', 'id' => $model->CATEGORYCONTENT_ID], ['class' => 'btn btn-success']) ?>
-	</p>
-
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'CATEGORY_ID')->dropDownList($category)?>
-
-    <?= $form->field($model, 'CATEGORYCONTENT_NAME')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'CATEGORYCONTENT_IMAGE')->fileInput() ?>   
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

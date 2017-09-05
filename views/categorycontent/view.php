@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Another Content', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Another Content', ['create'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a('Update Image', ['update-image', 'id' => $model->CATEGORYCONTENT_ID], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Update', ['update', 'id' => $model->CATEGORYCONTENT_ID], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->CATEGORYCONTENT_ID], [
             'class' => 'btn btn-danger',

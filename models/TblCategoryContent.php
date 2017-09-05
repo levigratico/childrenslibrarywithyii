@@ -31,9 +31,9 @@ class TblCategoryContent extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['CATEGORY_ID', 'CATEGORYCONTENT_NAME', 'CATEGORYCONTENT_IMAGE'], 'required'],
+            [['CATEGORY_ID', 'CATEGORYCONTENT_NAME'], 'required'],
             [['CATEGORY_ID'], 'integer'],
-            [['CATEGORYCONTENT_NAME', 'CATEGORYCONTENT_IMAGE'], 'string', 'max' => 100],
+            [['CATEGORYCONTENT_NAME'], 'string', 'max' => 100],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
         ];
     }
@@ -55,8 +55,15 @@ class TblCategoryContent extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCATEGORY()
+    public function getCategory()
     {
         return $this->hasOne(TblCategory::className(), ['CATEGORY_ID' => 'CATEGORY_ID']);
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['update-image'] = ['image'];
+        return $scenarios;
     }
 }
