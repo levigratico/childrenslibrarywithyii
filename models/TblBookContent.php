@@ -28,11 +28,11 @@ class TblBookContent extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function rules()
-    {
+    {   
         return [
             [['BOOKCOVER_ID', 'BOOKPAGES_IMAGE'], 'required'],
-            [['BOOKCOVER_ID', 'IS_ACTIVE'], 'integer'],
-            [['BOOKPAGES_IMAGE'], 'string', 'max' => 100],
+            [['BOOKCOVER_ID'], 'integer'],
+            [['BOOKPAGES_IMAGE'], 'file', 'extensions' => 'png,jpg','maxFiles'=>0,'skipOnEmpty'=>false],
             [['BOOKCOVER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblBookCover::className(), 'targetAttribute' => ['BOOKCOVER_ID' => 'BOOKCOVER_ID']],
         ];
     }
@@ -43,9 +43,9 @@ class TblBookContent extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'BOOKCONTENT_ID' => 'Bookcontent  ID',
-            'BOOKCOVER_ID' => 'Bookcover  ID',
-            'BOOKPAGES_IMAGE' => 'Bookpages  Image',
+            'BOOKCONTENT_ID' => 'Book Page  ID',
+            'BOOKCOVER_ID' => 'Book Title',
+            'BOOKPAGES_IMAGE' => 'Book Page Images',
             'IS_ACTIVE' => 'Is  Active',
         ];
     }

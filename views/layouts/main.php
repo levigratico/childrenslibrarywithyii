@@ -128,7 +128,7 @@ AppAsset::register($this);
                                     <a href="<?= Url::to('index.php?r=tblbookcover%2Findex')?>">Cover page/Information</a>
                                 </li>
                                 <li>
-                                    <a href="#">Upload Content</a>
+                                    <a href="<?= Url::to('index.php?r=bookcontent%2Findex')?>">Upload Content</a>
                                 </li>
                             </ul>
 
