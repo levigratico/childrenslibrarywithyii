@@ -53,7 +53,7 @@ class TblBookContent extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBOOKCOVER()
+    public function getBookcover()
     {
         return $this->hasOne(TblBookCover::className(), ['BOOKCOVER_ID' => 'BOOKCOVER_ID']);
     }

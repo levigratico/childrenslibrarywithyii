@@ -59,23 +59,88 @@ AppAsset::register($this);
       padding: 0;
       margin:0;
       border-radius: 0;
-      background-color: white;
+      background-color: rgb(61,140,189);
       border-right: 0;
       border-left: 0;
       border-top: 0;
       border-bottom: 1px thin;
       border-color: whitesmoke;
+
     }
     .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
     {
       background-color: rgb(241,241,241);
       color:rgb(51,122,183);
     }
- 
-    /*.container-fluid
+    img.img-adjust
     {
-     padding-top: 70px
-    }*/
+        margin-bottom: 20px;
+    }
+
+    .navbar-default .navbar-brand
+    {
+        color: white;
+    }
+
+    .sidebar ul li
+    {
+        background-color: rgb(36,43,54);
+        border-color: rgb(36,43,54);
+        color:white;
+
+    }
+    .sidebar ul li a.active
+    {
+        background-color: rgb(45,56,66);
+        border-color: rgb(36,43,54);
+    }
+    .nav>li>a:focus, .nav>li>a:hover
+    {
+       background-color: rgb(36,43,54);
+       /*color:white;*/
+    }
+    .sidebar .nav-second-level li a
+    {
+        background-color: none;
+    }
+    a 
+    {
+        color:rgb(239,239,247);
+    }
+    a:hover
+    {
+        color:rgb(61,140,187);
+    }
+    html,body
+    {
+        background-color: rgb(36,43,54);
+        border-color: rgb(36,43,54);
+    }
+    table thead tr th a 
+    {
+        color:rgb(61,140,187);
+    }
+    span.glyphicon
+    {
+        color:rgb(61,140,187);
+        font-size: 20px;
+        padding-top: 10px;
+    }
+    
+    ul.breadcrumb li a
+    {
+        color:rgb(61,140,187);
+
+    }
+    ul.breadcrumb
+    {
+        padding-top:20px;
+        background-color: white;
+    }
+    table tbody tr td img
+    {
+        box-shadow: 1px 1px 1px 1px gray;
+    }
     </style>
 </head>
 <body>
@@ -120,6 +185,7 @@ AppAsset::register($this);
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu"> 
+                       <li><br/><center><?php echo Html::img('@web/images/admin.png',['width'=>'200','class'=>'img-adjust']) ?></li>
                         
                         <li>
                             <a href="#"><i class="glyphicon glyphicon-book"></i>&nbsp; Books</a>
@@ -146,7 +212,7 @@ AppAsset::register($this);
 
                         </li>
                         <li>
-                            <a href="index.html"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Color</a>
+                            <a href="<?= Url::to('index.php?r=color%2Findex')?>"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Color</a>
                         </li>
                         <li>
                             <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
@@ -191,6 +257,13 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+
+<script>
+    $(document).ready(function(){
+        $("table").removeClass("table table-striped table-bordered");
+        $("table").addClass("table table table-hover table-striped");
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

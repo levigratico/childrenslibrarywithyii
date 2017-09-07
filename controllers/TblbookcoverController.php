@@ -92,7 +92,7 @@ class TblbookcoverController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
             $basepath = Yii::getAlias('@app');
-            $imagepath= $basepath.'/web/upload/';
+            $imagepath= $basepath.'/web/upload_bookcover/';
             $rand_name=rand(10,100);
 
             if ($image)
@@ -191,7 +191,7 @@ class TblbookcoverController extends Controller
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
 
             $basepath = Yii::getAlias('@app');
-            $imagepath= $basepath.'/web/upload/';
+            $imagepath= $basepath.'/web/upload_bookcover/';
 
             $rand_name=rand(10,100);
 

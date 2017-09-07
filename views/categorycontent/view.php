@@ -33,7 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'CATEGORYCONTENT_ID',
             'CATEGORY_ID',
             'CATEGORYCONTENT_NAME',
-            'CATEGORYCONTENT_IMAGE',
+            [
+                'attribute' => 'CATEGORYCONTENT_IMAGE',
+                'format' => 'html', 
+                'label' => 'Book Cover',
+                'value' => function ($data) {
+                return Html::img(Yii::getAlias('@web').'/upload_categorycontentimages/'.$data['CATEGORYCONTENT_IMAGE'],
+                    ['width' => '100', 
+                     'height' => '70']);
+            },
+
+            ],
             'IS_ACTIVE',
         ],
     ]) ?>

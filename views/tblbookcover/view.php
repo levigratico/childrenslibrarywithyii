@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html', 
                 'label' => 'Book Cover',
                 'value' => function ($data) {
-                return Html::img(Yii::getAlias('@web').'/upload/'.$data['BOOKCOVER_IMAGE'],
+                return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
                     ['width' => '100', 
                      'height' => '70']);
             },

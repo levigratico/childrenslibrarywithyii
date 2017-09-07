@@ -97,7 +97,7 @@ class BookcontentController extends Controller
                 {
                    
                     $basepath = Yii::getAlias('@app');
-                    $imagepath= $basepath.'/web/upload/';
+                    $imagepath= $basepath.'/web/upload_bookcontentimages/';
                     
                     foreach ($upload->BOOKPAGES_IMAGE as $image) {
                         $model = new TblBookContent();

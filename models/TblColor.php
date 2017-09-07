@@ -29,8 +29,8 @@ class TblColor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['COLOR_ID', 'COLOR_NAME', 'IS_ACTIVE'], 'required'],
-            [['COLOR_ID', 'COLOR_NAME', 'IS_ACTIVE'], 'integer'],
+            [['COLOR_NAME'], 'required'],
+            [['COLOR_ID',  'IS_ACTIVE'], 'integer'],
         ];
     }
 
@@ -42,7 +42,7 @@ class TblColor extends \yii\db\ActiveRecord
         return [
             'COLOR_ID' => 'Color  ID',
             'COLOR_NAME' => 'Color  Name',
-            'IS_ACTIVE' => 'Is  Active',
+            // 'IS_ACTIVE' => 'Is  Active',
         ];
     }
 

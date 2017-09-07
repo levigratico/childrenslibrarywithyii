@@ -86,7 +86,7 @@ class CategoryController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
              $image = UploadedFile::getInstance($model,'CATEGORY_IMAGE');
                 $basepath = Yii::getAlias('@app');
-                $imagepath= $basepath.'/web/upload/';
+                $imagepath= $basepath.'/web/upload_categoryimages/';
                 $rand_name=rand(10,100);
 
                 if ($image)
@@ -123,7 +123,7 @@ class CategoryController extends Controller
 
                 $image = UploadedFile::getInstance($model,'CATEGORY_IMAGE');
                 $basepath = Yii::getAlias('@app');
-                $imagepath= $basepath.'/web/upload/';
+                $imagepath= $basepath.'/web/upload_categoryimages/';
                 $rand_name=rand(10,100);
 
                 if ($image)
