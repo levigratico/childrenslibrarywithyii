@@ -21,6 +21,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'CATEGORYCONTENT_NAME')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->errorSummary($model); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

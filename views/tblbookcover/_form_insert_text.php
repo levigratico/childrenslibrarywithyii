@@ -20,15 +20,19 @@ use yii\widgets\ActiveForm;
     
     <?= $form->field($model, 'CATEGORY_ID')->dropDownList($items)?>
 
+    <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList($catecontent)?>
+
     <?= $form->field($model, 'COLOR_ID')->dropDownList($colors)?>
 
     <?= $form->field($model, 'BOOK_TITLE')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'BOOK_AUTHOR')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'BOOK_ILLUSTRATOR')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'BOOK_ILLUSTRATOR')->textInput(['maxlength' => true]) ?> 
 
     <?= $form->field($model, 'BOOK_PUBLISHER')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'BOOK_PUBLICATIONDATE')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'BOOK_LANGUAGE')->dropDownList($language) ?>
 

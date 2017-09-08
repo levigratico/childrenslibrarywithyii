@@ -8,6 +8,7 @@ use app\models\TblBookCover;
 use app\models\TblbookcoverSearch;
 use app\models\TblCategory;
 use app\models\TblLanguage;
+use app\models\BookcontentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,8 +75,26 @@ class TblbookcoverController extends Controller
      */
     public function actionView($id)
     {
+         $searchModel = new BookcontentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = BookcontentSearch::find()->andWhere([ 'BOOKCOVER_ID' => $id ]);
+
+        //Pagination by 5 data
+        $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [ 'pageSize' => 5 ],    // data rows to show
+                    'sort' => [                             // Sorting of data to Descending order
+                        'defaultOrder' => [                
+                            'BOOKCONTENT_ID' => SORT_ASC,    // Sort by column_name BOOKCOVER_ID 
+                        ],
+
+                    ],
+                ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -129,12 +148,20 @@ class TblbookcoverController extends Controller
             $rows2      = $command2->queryAll();
             $language     = ArrayHelper::map($rows2, 'LANGUAGE_ID', 'LANGUAGE');
 
+            $query3 = new \yii\db\Query;
+            $query3->select('CATEGORYCONTENT_ID, CATEGORYCONTENT_NAME')
+            ->from('tbl_category_content');
+            $command3   = $query3->createCommand();
+            $rows3      = $command3->queryAll();
+            $catecontent     = ArrayHelper::map($rows3, 'CATEGORYCONTENT_ID', 'CATEGORYCONTENT_NAME');
+
 
             return $this->render('create', [
                 'model' => $model,
                 'items' =>  $items,
                 'colors' => $colors,
                 'language' => $language,
+                'catecontent' => $catecontent,
             ]);
         }
     }

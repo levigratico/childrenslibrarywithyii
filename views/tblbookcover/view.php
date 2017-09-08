@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
@@ -53,5 +54,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
+
+    <br/>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        // 'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'BOOKCONTENT_ID',
+            // [
+            //     'attribute' => 'BOOKCOVER_ID',
+            //     'value' => 'bookcover.BOOK_TITLE',
+            // ],
+            [
+                'attribute' => 'BOOKPAGES_IMAGE',
+                'format' => 'html', 
+                'label' => 'Book Cover',
+                'value' => function ($data) {
+                return Html::img(Yii::getAlias('@web').'/upload_bookcontentimages/'.$data['BOOKPAGES_IMAGE'],
+                    ['width' => '80', 
+                     'height' => '100']);
+            },
+            
+            ],
+            // 'IS_ACTIVE',
+
+            // ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 
 </div>

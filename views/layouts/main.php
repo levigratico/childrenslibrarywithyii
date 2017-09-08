@@ -217,6 +217,9 @@ AppAsset::register($this);
                         <li>
                             <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
                         </li>
+                        <li>
+                            <a href="<?= Url::to('index.php?r=batch%2Fcreate')?>"><i class="glyphicon glyphicon-save"></i>&nbsp; Import CSV</a>
+                        </li>
                        
                        
                        
