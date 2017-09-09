@@ -78,6 +78,8 @@ class CategoryController extends Controller
         ]);
     }
 
+   
+
     public function actionUpdateImage($id)
     {
         $model = $this->findModel($id);

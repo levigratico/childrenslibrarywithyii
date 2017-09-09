@@ -16,7 +16,7 @@ use Yii;
  * @property string $BOOK_ILLUSTRATOR
  * @property string $BOOK_PUBLISHER
  * @property string $BOOK_PUBLICATIONDATE
- * @property integer $LANGUAGE_ID
+ * @property string $BOOK_LANGUAGE
  * @property string $BOOK_SUMMARY
  * @property string $BOOK_DESCRIPTION
  * @property integer $BOOKCOUNT_PAGES
@@ -25,7 +25,6 @@ use Yii;
  *
  * @property TblBookContent[] $tblBookContents
  * @property TblCategory $cATEGORY
- * @property TblLanguage $lANGUAGE
  * @property TblCategoryContent $tblCategoryContent
  */
 class TblBookCover extends \yii\db\ActiveRecord
@@ -44,13 +43,13 @@ class TblBookCover extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'BOOK_TITLE'], 'required'],
-            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'COLOR_ID', 'LANGUAGE_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
+            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'BOOK_TITLE', 'BOOK_AUTHOR'], 'required'],
+            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'COLOR_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
             [['BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'string'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOKCOVER_IMAGE'], 'string', 'max' => 100],
+            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOKCOVER_IMAGE'], 'string', 'max' => 100],
             [['BOOK_PUBLICATIONDATE'], 'string', 'max' => 20],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
-            [['LANGUAGE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblLanguage::className(), 'targetAttribute' => ['LANGUAGE_ID' => 'LANGUAGE_ID']],
+            [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
             [['COLOR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblColor::className(), 'targetAttribute' => ['COLOR_ID' => 'COLOR_ID']],
             [['BOOKCOVER_IMAGE'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
@@ -78,7 +77,7 @@ class TblBookCover extends \yii\db\ActiveRecord
             'BOOK_ILLUSTRATOR' => 'Book  Illustrator',
             'BOOK_PUBLISHER' => 'Book  Publisher',
             'BOOK_PUBLICATIONDATE' => 'Book  Publicationdate',
-            'LANGUAGE_ID' => 'Language  ID',
+            'BOOK_LANGUAGE' => 'Book  Language',
             'BOOK_SUMMARY' => 'Book  Summary',
             'BOOK_DESCRIPTION' => 'Book  Description',
             'BOOKCOUNT_PAGES' => 'Bookcount  Pages',
@@ -106,20 +105,12 @@ class TblBookCover extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLanguage()
-    {
-        return $this->hasOne(TblLanguage::className(), ['LANGUAGE_ID' => 'LANGUAGE_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTblCategoryContent()
     {
         return $this->hasOne(TblCategoryContent::className(), ['CATEGORYCONTENT_ID' => 'CATEGORYCONTENT_ID']);
     }
 
-     /**
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getColor()

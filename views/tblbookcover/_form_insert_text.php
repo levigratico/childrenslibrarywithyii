@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use app\models\TblCategory;
+use app\models\TblCategoryContent;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
@@ -17,10 +19,25 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    
-    <?= $form->field($model, 'CATEGORY_ID')->dropDownList($items)?>
 
-    <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList($catecontent)?>
+    <?= $form->field($model, 'CATEGORY_ID')->dropDownList(
+                            ArrayHelper::map( TblCategory::find()->all(), 'CATEGORY_ID','CATEGORY_TITLE'),
+                            [
+                                'prompt'=>'Select Category',
+                                'onchange'=>'
+                                    $.post( "index.php?r=categorycontent/lists&id='.'"+$(this).val(), function(data) {
+                                        $( "select#tblbookcover-categorycontent_id" ).html(data);
+                                    });'
+                                
+                            ]);?>
+
+    <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList(
+                            ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME'),
+                            [
+                                'prompt'=>'Select Category Content',
+                                
+                                
+                            ]);?>
 
     <?= $form->field($model, 'COLOR_ID')->dropDownList($colors)?>
 
@@ -34,7 +51,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'BOOK_PUBLICATIONDATE')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'BOOK_LANGUAGE')->dropDownList($language) ?>
+    <?= $form->field($model, 'LANGUAGE_ID')->dropDownList($language) ?>
 
     <?= $form->field($model, 'BOOK_SUMMARY')->textarea(['rows' => 6]) ?>
 

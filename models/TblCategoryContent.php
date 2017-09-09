@@ -40,6 +40,13 @@ class TblCategoryContent extends \yii\db\ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['update-image'] = ['image'];
+        return $scenarios;
+    }
+
     /**
      * @inheritdoc
      */
@@ -68,12 +75,5 @@ class TblCategoryContent extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(TblCategory::className(), ['CATEGORY_ID' => 'CATEGORY_ID']);
-    }
-
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios['update-image'] = ['image'];
-        return $scenarios;
     }
 }

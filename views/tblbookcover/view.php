@@ -30,28 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'BOOKCOVER_ID',
-            'category.CATEGORY_TITLE',
-            'color.COLOR_NAME',
-            'BOOK_TITLE',
-            'BOOK_AUTHOR',
-            'BOOK_ILLUSTRATOR',
-            'BOOK_PUBLISHER',
-            'BOOK_LANGUAGE',
-            'BOOK_SUMMARY:ntext',
-            'BOOK_DESCRIPTION:ntext',
-            'BOOKCOUNT_PAGES',
             [
                 'attribute' => 'BOOKCOVER_IMAGE',
                 'format' => 'html', 
                 'label' => 'Book Cover',
                 'value' => function ($data) {
                 return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
-                    ['width' => '100', 
-                     'height' => '70']);
+                    ['width' => '200', 
+                     'height' => '300']);
             },
-
             ],
+            'BOOKCOVER_ID',
+            'category.CATEGORY_TITLE',
+            'tblCategoryContent.CATEGORYCONTENT_NAME',
+            'color.COLOR_NAME',
+            'BOOK_TITLE',
+            'BOOK_AUTHOR',
+            'BOOK_ILLUSTRATOR',
+            'BOOK_PUBLISHER',
+            'LANGUAGE_ID',
+            'BOOK_SUMMARY:ntext',
+            'BOOK_DESCRIPTION:ntext',
+            'BOOKCOUNT_PAGES',
+            
         ],
     ]) ?>
 
