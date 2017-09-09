@@ -72,7 +72,6 @@ class TblbookcoverSearch extends TblBookCover
             ->andFilterWhere(['like', 'BOOK_AUTHOR', $this->BOOK_AUTHOR])
             ->andFilterWhere(['like', 'BOOK_ILLUSTRATOR', $this->BOOK_ILLUSTRATOR])
             ->andFilterWhere(['like', 'BOOK_PUBLISHER', $this->BOOK_PUBLISHER])
-            ->andFilterWhere(['like', 'BOOK_LANGUAGE', $this->BOOK_LANGUAGE])
             ->andFilterWhere(['like', 'BOOK_SUMMARY', $this->BOOK_SUMMARY])
             ->andFilterWhere(['like', 'BOOK_DESCRIPTION', $this->BOOK_DESCRIPTION]);
 

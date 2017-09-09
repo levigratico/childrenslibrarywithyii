@@ -214,6 +214,9 @@ AppAsset::register($this);
                         <li>
                             <a href="<?= Url::to('index.php?r=color%2Findex')?>"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Color</a>
                         </li>
+                         <li>
+                            <a href="<?= Url::to('index.php?r=language%2Findex')?>"><i class="glyphicon glyphicon-globe"></i>&nbsp; Language</a>
+                        </li>
                         <li>
                             <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
                         </li>

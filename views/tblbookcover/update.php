@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = 'Update';
         'items' => $items,
         'colors' => $colors,
         'language' => $language,
+        'catecontent' => $catecontent,
     ]) ?>
 
 </div>

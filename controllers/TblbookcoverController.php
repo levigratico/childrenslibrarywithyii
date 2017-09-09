@@ -8,6 +8,7 @@ use app\models\TblBookCover;
 use app\models\TblbookcoverSearch;
 use app\models\TblCategory;
 use app\models\TblLanguage;
+use app\models\TblColor;
 use app\models\BookcontentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -162,6 +163,7 @@ class TblbookcoverController extends Controller
                 'colors' => $colors,
                 'language' => $language,
                 'catecontent' => $catecontent,
+                
             ]);
         }
     }
@@ -196,6 +198,13 @@ class TblbookcoverController extends Controller
             $rows2      = $command2->queryAll();
             $language     = ArrayHelper::map($rows2, 'LANGUAGE_ID', 'LANGUAGE');
 
+            $query3 = new \yii\db\Query;
+            $query3->select('CATEGORYCONTENT_ID, CATEGORYCONTENT_NAME')
+            ->from('tbl_category_content');
+            $command3   = $query3->createCommand();
+            $rows3      = $command3->queryAll();
+            $catecontent     = ArrayHelper::map($rows3, 'CATEGORYCONTENT_ID', 'CATEGORYCONTENT_NAME');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
         } else {
@@ -204,9 +213,12 @@ class TblbookcoverController extends Controller
                 'items' =>  $items,
                 'colors' => $colors,
                 'language' => $language,
+                'catecontent' => $catecontent,
             ]);
         }
     }
+
+  
 
 
     public function actionUpdateImage($id)

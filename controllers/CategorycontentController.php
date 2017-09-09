@@ -48,6 +48,28 @@ class CategorycontentController extends Controller
         ]);
     }
 
+       public function actionLists($id)
+    {
+        $countCategory = TblCategoryContent::find()
+                ->where(['CATEGORY_ID' => $id])
+                ->count();
+
+        $category = TblCategoryContent::find()
+                ->where(['CATEGORY_ID' => $id])
+                ->all();
+
+        if($countCategory > 0)
+        {
+            foreach($category as $categ){
+                echo "<option value='".$categ->CATEGORYCONTENT_ID."'>".$categ->CATEGORYCONTENT_NAME."</option>";
+            }
+        }
+        else
+        {
+            echo "<option> - </option>";
+        }
+    }
+
     /**
      * Displays a single TblCategoryContent model.
      * @param integer $id
