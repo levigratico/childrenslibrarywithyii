@@ -39,14 +39,16 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                        '<controller:\w+>/<id:\d+>/<slug:\w+>' => '<controller>/view',
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];
