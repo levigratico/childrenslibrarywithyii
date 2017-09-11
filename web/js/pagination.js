@@ -7,7 +7,7 @@ $(function(){
   $("#lo").show();
 	$.ajax({
 		type: 'GET',
-		url: 'http://localhost/childrenslibrarywithyii/web/index.php/searchbook/categories'
+		url: 'http://localhost/childrenslibrarywithyii/web/index.php?r=searchbook%2Fcategories'
 	}).done(function(data){
 		categories = JSON.parse(data);
 		var html = "";
@@ -21,7 +21,7 @@ $(function(){
 
   $.ajax({
     type: 'GET',
-    url: 'http://localhost/childrenslibrarywithyii/web/index.php/searchbook/firstbooks'
+    url: 'http://localhost/childrenslibrarywithyii/web/index.php?r=searchbook%2Ffirstbooks'
   }).done(function(data){
     var html = "";
     books = JSON.parse(data);
@@ -56,7 +56,7 @@ $(function(){
     $("#lo").show();
       $.ajax({
         type: 'GET',
-        url: 'http://localhost/childrenslibrarywithyii/web/index.php/searchbook/getbooksbyoffset',
+        url: 'http://localhost/childrenslibrarywithyii/web/index.php?r=searchbook%2Fgetbooksbyoffset',
         data: {offset : count}
       }).done(function(data){
           var html = "";
@@ -96,7 +96,7 @@ $(function(){
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/childrenslibrarywithyii/web/index.php/searchbook/getbooksbyoffset',
+        url: 'http://localhost/childrenslibrarywithyii/web/index.php?r=searchbook%2Fgetbooksbyoffset',
         data: {offset : count}
       }).done(function(data){
           var html = "";
