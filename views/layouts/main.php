@@ -186,7 +186,7 @@ AppAsset::register($this);
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu"> 
                        <li><br/><center><?php echo Html::img('@web/images/admin.png',['width'=>'200','class'=>'img-adjust']) ?></li>
-                        
+                         
                         <li>
                             <a href="#"><i class="glyphicon glyphicon-book"></i>&nbsp; Books</a>
                             <ul class="nav nav-second-level">
@@ -217,13 +217,15 @@ AppAsset::register($this);
                          <li>
                             <a href="<?= Url::to('index.php?r=language%2Findex')?>"><i class="glyphicon glyphicon-globe"></i>&nbsp; Language</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?= Url::to('index.php?r=batch%2Fcreate')?>"><i class="glyphicon glyphicon-save"></i>&nbsp; Import CSV</a>
                         </li>
-                       
+                       <li>
+                            <a href="<?= Url::to('index.php?r=searchbook%2Findex')?>" target="_blank"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Children's Library</a>
+                        </li>
                        
                        
                     </ul>

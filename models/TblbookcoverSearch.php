@@ -12,6 +12,7 @@ use app\models\TblBookCover;
  */
 class TblbookcoverSearch extends TblBookCover
 {
+
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class TblbookcoverSearch extends TblBookCover
     {
         return [
             [['BOOKCOVER_ID', 'CATEGORY_ID', 'COLOR_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'safe'],
+            [['BOOK_TITLE', 'BOOK_AUTHOR', 'CATEGORYCONTENT_ID','BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'safe'],
         ];
     }
 
@@ -57,17 +58,19 @@ class TblbookcoverSearch extends TblBookCover
             return $dataProvider;
         }
 
+       
         // grid filtering conditions
         $query->andFilterWhere([
             'BOOKCOVER_ID' => $this->BOOKCOVER_ID,
             'CATEGORY_ID' => $this->CATEGORY_ID,
+            'CATEGORYCONTENT_ID' => $this->CATEGORYCONTENT_ID,
             'COLOR_ID' => $this->COLOR_ID,
             'BOOKCOUNT_PAGES' => $this->BOOKCOUNT_PAGES,
             'IS_ACTIVE' => $this->IS_ACTIVE,
         ]);
 
         
-
+        $query->joinWith('tblCategoryContent');
         $query->andFilterWhere(['like', 'BOOK_TITLE', $this->BOOK_TITLE])
             ->andFilterWhere(['like', 'BOOK_AUTHOR', $this->BOOK_AUTHOR])
             ->andFilterWhere(['like', 'BOOK_ILLUSTRATOR', $this->BOOK_ILLUSTRATOR])

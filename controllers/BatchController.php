@@ -93,16 +93,18 @@ class BatchController extends Controller
                             $bulkInsertArray[] = [
                                 
                                 'CATEGORY_ID' => isset($line[0]) ? $line[0] : null,
-                                'COLOR_ID' => isset($line[1]) ? $line[1] : null,
-                                'BOOK_TITLE' => isset($line[2]) ? $line[2] : null,
-                                'BOOK_AUTHOR' => isset($line[3]) ? $line[3] : null,
-                                'BOOK_ILLUSTRATOR' => isset($line[4]) ? $line[4] : null,
-                                'BOOK_PUBLISHER' => isset($line[5]) ? $line[5] : null,
-                                'BOOK_LANGUAGE' => isset($line[6]) ? $line[6] : null,
-                                'BOOK_SUMMARY' => isset($line[7]) ? $line[7] : null,
-                                'BOOK_DESCRIPTION' => isset($line[8]) ? $line[8] : null,
-                                'BOOKCOUNT_PAGES' => isset($line[9]) ? $line[9] : null,
-                                'BOOKCOVER_IMAGE' =>isset($line[10]) ? $line[10] : null,
+                                'CATEGORYCONTENT_ID' => isset($line[1]) ? $line[1] : null,
+                                'COLOR_ID' => isset($line[2]) ? $line[2] : null,
+                                'BOOK_TITLE' => isset($line[3]) ? $line[3] : null,
+                                'BOOK_AUTHOR' => isset($line[4]) ? $line[4] : null,
+                                'BOOK_ILLUSTRATOR' => isset($line[5]) ? $line[5] : null,
+                                'BOOK_PUBLISHER' => isset($line[6]) ? $line[6] : null,
+                                'BOOK_PUBLICATIONDATE' => isset($line[7]) ? $line[7] : null,
+                                'LANGUAGE_ID' => isset($line[8]) ? $line[8] : null,
+                                'BOOK_SUMMARY' => isset($line[9]) ? $line[9] : null,
+                                'BOOK_DESCRIPTION' => isset($line[10]) ? $line[10] : null,
+                                'BOOKCOUNT_PAGES' => isset($line[11]) ? $line[11] : null,
+                                'BOOKCOVER_IMAGE' =>isset($line[12]) ? $line[12] : null,
                             ];
                            
                         }
@@ -110,7 +112,7 @@ class BatchController extends Controller
                        fclose($handle);
 
                        $tableName = "tbl_book_cover";
-                       $columnNameArray = ['CATEGORY_ID','COLOR_ID','BOOK_TITLE','BOOK_AUTHOR','BOOK_ILLUSTRATOR','BOOK_PUBLISHER','BOOK_LANGUAGE','BOOK_SUMMARY','BOOK_DESCRIPTION','BOOKCOUNT_PAGES','BOOKCOVER_IMAGE'];
+                       $columnNameArray = ['CATEGORY_ID','CATEGORYCONTENT_ID','COLOR_ID','BOOK_TITLE','BOOK_AUTHOR','BOOK_ILLUSTRATOR','BOOK_PUBLISHER','BOOK_PUBLICATIONDATE','LANGUAGE_ID','BOOK_SUMMARY','BOOK_DESCRIPTION','BOOKCOUNT_PAGES','BOOKCOVER_IMAGE'];
                        Yii::$app->db->createCommand()->batchInsert($tableName, $columnNameArray, $bulkInsertArray)->execute();
                         // print_r($bulkInsertArray);
                     }
