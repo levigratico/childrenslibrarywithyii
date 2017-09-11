@@ -12,9 +12,12 @@ class AppLeviSet extends AssetBundle {
         'template/dist/css/sb-admin-2.min.css'
     ];  
     public $js = [
-        // 'js/jquery.min.js',
+        'js/jquery.min.js',
         'template/vendor/bootstrap/js/bootstrap.min.js',
         'template/dist/js/sb-admin-2.min.js',
+        'js/jquery.bootpag.min.js',
+        'js/pagination.js'
+
     ];
     public $depends = [];
 }
