@@ -34,7 +34,7 @@ class SearchbookController extends Controller {
     		array_push($array, array(
     								 'id' => $value['id'],
     								 'name' => $value['name'],
-    								 'image' => Url::to('@web/imagescategory/') . $value['image']
+    								 'image' => Url::to('@web/upload_categoryimages/') . $value['image']
     								));
     	}
 
