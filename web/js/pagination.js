@@ -145,10 +145,6 @@ function htmlBuilder(catname, imgSrc) {
    return html;
 }
 
-function gridBuilder() {
-
-}
-
 
 
 
@@ -175,5 +171,10 @@ function imageExists(image_url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', image_url, false);
     http.send();
-    return http.status != 404;
+    if (http.status != 404) {
+      return(image_url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    } else {
+
+      return false;
+    }
 }
