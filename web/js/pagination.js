@@ -35,7 +35,8 @@ $(function(){
         }
         html += '<div style="padding: 10px 30px; width: 30%; height: 140px; display: inline-block;">';
         html += '<div style="height: 80px;">';
-        html += '<img src="' + books[i]['image'] +'" style="width: 100%; height: 80px;"></div>'
+        var src = imageExists(books[i]['image']) ? books[i]['image'] :'http://localhost/childrenslibrarywithyii/web/upload_bookcover/genericBookCover.jpg';
+        html += '<img src="' + src +'" style="width: 100%; height: 80px;"></div>'
         html += '<div style="text-align: center; font-size: 10px">' + books[i]['title']  +'</div>';
         html += '<div style="text-align: center; font-size: 10px">' + books[i]['author']  +'</div></div>';
 
@@ -70,7 +71,8 @@ $(function(){
               }
               html += '<div style="padding: 10px 30px; width: 30%; height: 140px; display: inline-block;">';
               html += '<div style="height: 80px;">';
-              html += '<img src="' + books[i]['image'] +'" style="width: 100%; height: 80px;"></div>'
+              var src = imageExists(books[i]['image']) ? books[i]['image'] :'http://localhost/childrenslibrarywithyii/web/upload_bookcover/genericBookCover.jpg';
+              html += '<img src="' + src +'" style="width: 100%; height: 80px;"></div>'
               html += '<div style="text-align: center; font-size: 10px">' + books[i]['title']  +'</div>';
               html += '<div style="text-align: center; font-size: 10px">' + books[i]['author']  +'</div></div>';
 
@@ -109,7 +111,8 @@ $(function(){
               }
               html += '<div style="padding: 10px 30px; width: 30%; height: 140px; display: inline-block;">';
               html += '<div style="height: 80px;">';
-              html += '<img src="' + books[i]['image'] +'" style="width: 100%; height: 80px;"></div>'
+              var src = imageExists(books[i]['image']) ? books[i]['image'] :'http://localhost/childrenslibrarywithyii/web/upload_bookcover/genericBookCover.jpg';
+              html += '<img src="' + src +'" style="width: 100%; height: 80px;"></div>'
               html += '<div style="text-align: center; font-size: 10px">' + books[i]['title']  +'</div>';
               html += '<div style="text-align: center; font-size: 10px">' + books[i]['author']  +'</div></div>';
 
@@ -132,7 +135,7 @@ $(function(){
 function htmlBuilder(catname, imgSrc) {
    var html = '<div>';
        html += '<div style="border: 1px solid red; border-radius: 40px; width:60px; display: inline-block; margin: 10px;">'
-       var src = imageExists(imgSrc) ? imgSrc : 'https://www.neto.com.au/assets/images/default_product.gif';
+       var src = imageExists(imgSrc) ? imgSrc : 'http://localhost/childrenslibrarywithyii/web/upload_categoryimages/default_product.gif';
        html += '<img src="' + src +'" style="width: 100%; height: 100%; border-radius: 40px;">';
        html += '</div>';
        var fontsize = catname.length > 7 ? 12 : 16;
