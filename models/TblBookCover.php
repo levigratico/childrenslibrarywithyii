@@ -63,6 +63,8 @@ class TblBookCover extends \yii\db\ActiveRecord
         return $scenarios;
     }
 
+
+
     /**
      * @inheritdoc
      */
@@ -70,19 +72,19 @@ class TblBookCover extends \yii\db\ActiveRecord
     {
         return [
             'BOOKCOVER_ID' => 'Bookcover  ID',
-            'CATEGORY_ID' => 'Category  ID',
-            'CATEGORYCONTENT_ID' => 'Categorycontent  ID',
-            'COLOR_ID' => 'Color  ID',
-            'BOOK_TITLE' => 'Book  Title',
-            'BOOK_AUTHOR' => 'Book  Author',
-            'BOOK_ILLUSTRATOR' => 'Book  Illustrator',
-            'BOOK_PUBLISHER' => 'Book  Publisher',
-            'BOOK_PUBLICATIONDATE' => 'Book  Publicationdate',
-            'LANGUAGE_ID' => 'Language  ID',
-            'BOOK_SUMMARY' => 'Book  Summary',
-            'BOOK_DESCRIPTION' => 'Book  Description',
-            'BOOKCOUNT_PAGES' => 'Bookcount  Pages',
-            'BOOKCOVER_IMAGE' => 'Bookcover  Image',
+            'CATEGORY_ID' => 'Category',
+            'CATEGORYCONTENT_ID' => 'Subcategory',
+            'COLOR_ID' => 'Color',
+            'BOOK_TITLE' => 'Title',
+            'BOOK_AUTHOR' => 'Author',
+            'BOOK_ILLUSTRATOR' => 'Illustrator',
+            'BOOK_PUBLISHER' => 'Publisher',
+            'BOOK_PUBLICATIONDATE' => 'Publication Date',
+            'LANGUAGE_ID' => 'Language',
+            'BOOK_SUMMARY' => 'Summary',
+            'BOOK_DESCRIPTION' => 'Description',
+            'BOOKCOUNT_PAGES' => 'How many pages?',
+            'BOOKCOVER_IMAGE' => 'Cover Image',
             'IS_ACTIVE' => 'Is  Active',
         ];
     }

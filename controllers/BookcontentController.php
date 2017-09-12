@@ -6,6 +6,7 @@ use Yii;
 use app\models\TblBookContent;
 use app\models\TblBookCover;
 use app\models\BookcontentSearch;
+use app\models\TblbookcoverSearch;
 use app\models\UploadForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,6 +58,7 @@ class BookcontentController extends Controller
      */
     public function actionView($id)
     {
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -86,6 +88,8 @@ class BookcontentController extends Controller
     }
 
     public function actionMultiple(){
+        $searchModel = new TblbookcoverSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
            $upload = new TblBookContent();
            $bookcover = TblBookCover::find()->where(['IS_ACTIVE'=>1])->all();
@@ -115,7 +119,11 @@ class BookcontentController extends Controller
                 }
            }
 
-           return $this->render('multiple',['upload'=>$upload,'bookcover'=>ArrayHelper::map($bookcover,'BOOKCOVER_ID','BOOK_TITLE')]);
+           return $this->render('multiple',['upload'=>$upload,
+            'bookcover'=>ArrayHelper::map($bookcover,'BOOKCOVER_ID','BOOK_TITLE'),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            ]);
 
     }
 

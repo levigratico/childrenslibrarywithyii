@@ -141,6 +141,25 @@ AppAsset::register($this);
     {
         box-shadow: 1px 1px 1px 1px gray;
     }
+    div#multipleid table tr th:nth-child(2) {
+        display: none;
+    }
+    div#multipleid table tr td:nth-child(2) {
+        display: none;
+    }
+    h3#book-title
+    {
+        color: rgb(86,103,129);
+        background-color: rgb(242,242,242);
+        min-height: 50px;
+        text-align: center;
+        border-radius: 2px 2px 2px 2px;
+        font-size: 20px;
+        padding-top: 15px;
+        padding bottom: 15px;
+        font-weight: bold;
+
+    }
     </style>
 </head>
 <body>
@@ -194,7 +213,7 @@ AppAsset::register($this);
                                     <a href="<?= Url::to('index.php?r=tblbookcover%2Findex')?>">Cover page/Information</a>
                                 </li>
                                 <li>
-                                    <a href="<?= Url::to('index.php?r=bookcontent%2Findex')?>">Upload Content</a>
+                                    <a href="<?= Url::to('index.php?r=bookcontent%2Fmultiple')?>">Upload Content</a>
                                 </li>
                             </ul>
 
@@ -270,6 +289,13 @@ AppAsset::register($this);
     $(document).ready(function(){
         $("table").removeClass("table table-striped table-bordered");
         $("table").addClass("table table table-hover table-striped");
+
+        $("#multipletablebookcontent tr td").click(function(){
+           var id = $(this).parents('tr:eq(0)').find('td:eq(1)').text();
+           var booktitle = $(this).parents('tr:eq(0)').find('td:eq(2)').text();
+            $.trim($("#tblbookcontent-bookcover_id").val(id));
+            $("h3#book-title").text(booktitle);
+        });
     });
 </script>
 </body>

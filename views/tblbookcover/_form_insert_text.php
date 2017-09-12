@@ -34,10 +34,11 @@ use app\models\TblCategoryContent;
     <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList(
                             ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME'),
                             [
-                                'prompt'=>'Select Category Content',
+                                'prompt'=>'Select  Subcategory',
                                 
                                 
                             ]);?>
+    <?= $form->field($model, 'LANGUAGE_ID')->dropDownList($language) ?>
 
     <?= $form->field($model, 'COLOR_ID')->dropDownList($colors)?>
 
@@ -51,7 +52,7 @@ use app\models\TblCategoryContent;
 
     <?= $form->field($model, 'BOOK_PUBLICATIONDATE')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'LANGUAGE_ID')->dropDownList($language) ?>
+    
 
     <?= $form->field($model, 'BOOK_SUMMARY')->textarea(['rows' => 6]) ?>
 

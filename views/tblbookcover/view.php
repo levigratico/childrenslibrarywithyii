@@ -58,6 +58,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br/>
 
+    <?= Html::a('Delete All Pages', ['delete', 'id' => $model->BOOKCOVER_ID], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         // 'filterModel' => $searchModel,
