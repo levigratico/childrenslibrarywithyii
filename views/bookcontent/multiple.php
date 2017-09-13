@@ -41,34 +41,36 @@ $this->params['breadcrumbs'][] = $this->title;
 		</div>
 	</div>
 	<div class="col-lg-6">
-		 <?= GridView::widget([
-		        'dataProvider' => $dataProvider,
-		        'filterModel' => $searchModel,
-		        'tableOptions' => [
-		        // 'class'=>'ekek',
-		        'id' => 'multipletablebookcontent'
-		        ],
-		        'id' => 'multipleid',
-		        'columns' => [
-		            ['class' => 'yii\grid\SerialColumn'],
-		           	'BOOKCOVER_ID',
-		            'BOOK_TITLE',
-		            'BOOK_AUTHOR',
-		            [
-		                'attribute' => 'BOOKCOVER_IMAGE',
-		                'format' => 'html', 
-		                'label' => 'Book Cover',
-		                'value' => function ($data) {
-		                return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
-		                    ['width' => '80', 
-		                     'height' => '100']);
-		            },
-		            
-		            ],
+		<?php Pjax::begin() ?>
+			 <?= GridView::widget([
+			        'dataProvider' => $dataProvider,
+			        'filterModel' => $searchModel,
+			        'tableOptions' => [
+			        // 'class'=>'ekek',
+			        'id' => 'multipletablebookcontent'
+			        ],
+			        'id' => 'multipleid',
+			        'columns' => [
+			            ['class' => 'yii\grid\SerialColumn'],
+			           	'BOOKCOVER_ID',
+			            'BOOK_TITLE',
+			            'BOOK_AUTHOR',
+			            [
+			                'attribute' => 'BOOKCOVER_IMAGE',
+			                'format' => 'html', 
+			                'label' => 'Book Cover',
+			                'value' => function ($data) {
+			                return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
+			                    ['width' => '80', 
+			                     'height' => '100']);
+			            },
+			            
+			            ],
 
-		            // ['class' => 'yii\grid\ActionColumn'],
-		        ],
-		    ]); ?>
+			            // ['class' => 'yii\grid\ActionColumn'],
+			        ],
+			    ]); ?>
+		 <?php Pjax::end() ?>
 	</div>
 </div>
 
