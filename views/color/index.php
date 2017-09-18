@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'COLOR_ID',
             'COLOR_NAME',
+            'COLOR_VALUE',
             // 'IS_ACTIVE',
 
             ['class' => 'yii\grid\ActionColumn'],

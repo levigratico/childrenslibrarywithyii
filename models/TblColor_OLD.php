@@ -8,9 +8,10 @@ use Yii;
  * This is the model class for table "tbl_color".
  *
  * @property integer $COLOR_ID
- * @property string $COLOR_NAME
- * @property string $COLOR_VALUE
+ * @property integer $COLOR_NAME
  * @property integer $IS_ACTIVE
+ *
+ * @property TblBookCover[] $tblBookCovers
  */
 class TblColor extends \yii\db\ActiveRecord
 {
@@ -29,9 +30,7 @@ class TblColor extends \yii\db\ActiveRecord
     {
         return [
             [['COLOR_NAME'], 'required'],
-            [['IS_ACTIVE'], 'integer'],
-            [['COLOR_NAME'], 'string', 'max' => 50],
-            [['COLOR_VALUE'], 'string', 'max' => 50],
+            [['COLOR_ID',  'IS_ACTIVE'], 'integer'],
         ];
     }
 
@@ -43,12 +42,11 @@ class TblColor extends \yii\db\ActiveRecord
         return [
             'COLOR_ID' => 'Color  ID',
             'COLOR_NAME' => 'Color  Name',
-            'COLOR_VALUE' => 'HEX Value',
-            'IS_ACTIVE' => 'Is  Active',
+            // 'IS_ACTIVE' => 'Is  Active',
         ];
     }
 
-     /**
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getTblBookCovers()

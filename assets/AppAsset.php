@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
         'template/vendor/bootstrap/css/bootstrap.min.css',
         'template/vendor/metisMenu/metisMenu.min.css',
         'template/dist/css/sb-admin-2.css',
-        'template/vendor/font-awesome/css/font-awesome.min.css'
+        'template/vendor/font-awesome/css/font-awesome.min.css',
+        'color_picker/css/colorpicker.css' 
         
 
     ];  
@@ -30,7 +31,10 @@ class AppAsset extends AssetBundle
         // 'template/vendor/jquery/jquery.min.js',
         'template/vendor/bootstrap/js/bootstrap.min.js',
         'template/vendor/metisMenu/metisMenu.min.js',
-        'template/dist/js/sb-admin-2.js'
+        'template/dist/js/sb-admin-2.js',
+        'color_picker/js/colorpicker.js',
+        'color_picker/js/eye.js',
+        'color_picker/js/utils.js'
 
     ];
     public $depends = [

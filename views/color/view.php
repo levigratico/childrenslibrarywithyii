@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'COLOR_ID',
             'COLOR_NAME',
+            'COLOR_VALUE',
             'IS_ACTIVE',
         ],
     ]) ?>

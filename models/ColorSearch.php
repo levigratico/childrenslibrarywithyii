@@ -19,7 +19,7 @@ class ColorSearch extends TblColor
     {
         return [
             [['COLOR_ID', 'IS_ACTIVE'], 'integer'],
-            [['COLOR_NAME'], 'safe'],
+            [['COLOR_NAME','COLOR_VALUE'], 'safe'],
         ];
     }
 

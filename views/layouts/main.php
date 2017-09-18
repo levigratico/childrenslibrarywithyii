@@ -160,6 +160,12 @@ AppAsset::register($this);
         font-weight: bold;
 
     }
+
+    ul.breadcrumb > :first-child 
+    {
+        display: none;
+    }   
+    
     </style>
 </head>
 <body>
@@ -296,6 +302,21 @@ AppAsset::register($this);
             $.trim($("#tblbookcontent-bookcover_id").val(id));
             $("h3#book-title").text(booktitle);
         });
+
+        $('#tblcolor-color_value').ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+                $(el).val("#"+hex);
+                $(el).ColorPickerHide();
+            },
+            onBeforeShow: function () {
+                $(this).ColorPickerSetColor(this.value);
+            }
+        })
+        .bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+        })
+
+       
     });
 </script>
 </body>
