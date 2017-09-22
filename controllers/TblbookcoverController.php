@@ -108,8 +108,17 @@ class TblbookcoverController extends Controller
     {
         $model = new TblBookCover();
 
+        
+
+
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        
+        $request = Yii::$app->request;
+        $name = $request->post('BOOK_PUBLISHER');
+        print_r($name);
+
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
             $basepath = Yii::getAlias('@app');
             $imagepath= $basepath.'/web/upload_bookcover/';
@@ -126,7 +135,9 @@ class TblbookcoverController extends Controller
                     endif;
                 endif;             
 
-            return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
+           // return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
+
+            
         } else {
             $query = new \yii\db\Query;
             $query->select('CATEGORY_ID, CATEGORY_TITLE')

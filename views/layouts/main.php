@@ -158,6 +158,9 @@ AppAsset::register($this);
         padding-top: 15px;
         padding bottom: 15px;
         font-weight: bold;
+        border-color: gray;
+        border-style: ridge;
+        border-width: 1px;
 
     }
 
@@ -292,7 +295,9 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 
 <script>
+
     $(document).ready(function(){
+        $('.chosen-select').chosen();
         $("table").removeClass("table table-striped table-bordered");
         $("table").addClass("table table table-hover table-striped");
 

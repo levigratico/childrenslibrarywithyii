@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\TblCategory;
 use app\models\TblCategoryContent;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
@@ -56,7 +57,13 @@ use app\models\TblCategoryContent;
 
     <?= $form->field($model, 'BOOK_SUMMARY')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'BOOK_DESCRIPTION')->textarea(['rows' => 6]) ?>
+
+   <?= $form->field($model, 'BOOK_DESCRIPTION')->dropDownList($catecontent,[
+        'multiple'=>'multiple',
+        'class' => 'chosen-select',
+        
+    ])?>
+
 
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
 
