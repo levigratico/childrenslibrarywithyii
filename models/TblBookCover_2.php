@@ -19,6 +19,7 @@ use Yii;
  * @property integer $LANGUAGE_ID
  * @property string $BOOK_SUMMARY
  * @property string $BOOK_DESCRIPTION
+ * @property string $BOOK_TAGS
  * @property integer $BOOKCOUNT_PAGES
  * @property string $BOOKCOVER_IMAGE
  * @property integer $IS_ACTIVE
@@ -26,7 +27,6 @@ use Yii;
  * @property TblBookContent[] $tblBookContents
  * @property TblCategory $cATEGORY
  * @property TblLanguage $lANGUAGE
- * @property TblCategoryContent $tblCategoryContent
  */
 class TblBookCover extends \yii\db\ActiveRecord
 {
@@ -44,26 +44,15 @@ class TblBookCover extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'BOOK_TITLE'], 'required'],
-            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'LANGUAGE_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
-            [['BOOK_SUMMARY'], 'string'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOKCOVER_IMAGE'], 'string', 'max' => 100],
+            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'COLOR_ID', 'BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_PUBLICATIONDATE', 'LANGUAGE_ID', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION', 'BOOK_TAGS', 'BOOKCOUNT_PAGES', 'BOOKCOVER_IMAGE'], 'required'],
+            [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'COLOR_ID', 'LANGUAGE_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
+            [['BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'string'],
+            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_TAGS', 'BOOKCOVER_IMAGE'], 'string', 'max' => 100],
             [['BOOK_PUBLICATIONDATE'], 'string', 'max' => 20],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
             [['LANGUAGE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblLanguage::className(), 'targetAttribute' => ['LANGUAGE_ID' => 'LANGUAGE_ID']],
-            // [['COLOR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblColor::className(), 'targetAttribute' => ['COLOR_ID' => 'COLOR_ID']],
-            [['BOOKCOVER_IMAGE'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
-
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios['update-image'] = ['image'];
-        return $scenarios;
-    }
-
-
 
     /**
      * @inheritdoc
@@ -72,20 +61,20 @@ class TblBookCover extends \yii\db\ActiveRecord
     {
         return [
             'BOOKCOVER_ID' => 'Bookcover  ID',
-            'CATEGORY_ID' => 'Category',
-            'CATEGORYCONTENT_ID' => 'Subcategory',
-            'COLOR_VALUE' => 'Color',
-            'BOOK_TITLE' => 'Title',
-            'BOOK_AUTHOR' => 'Author',
-            'BOOK_ILLUSTRATOR' => 'Illustrator',
-            'BOOK_PUBLISHER' => 'Publisher',
-            'BOOK_PUBLICATIONDATE' => 'Publication Date',
-            'LANGUAGE_ID' => 'Language',
-            'BOOK_SUMMARY' => 'Summary',
-            'BOOK_DESCRIPTION' => 'Description',
-            // 'BOOK_TAGS' => 'Tags',
-            'BOOKCOUNT_PAGES' => 'How many pages?',
-            'BOOKCOVER_IMAGE' => 'Cover Image',
+            'CATEGORY_ID' => 'Category  ID',
+            'CATEGORYCONTENT_ID' => 'Categorycontent  ID',
+            'COLOR_ID' => 'Color  ID',
+            'BOOK_TITLE' => 'Book  Title',
+            'BOOK_AUTHOR' => 'Book  Author',
+            'BOOK_ILLUSTRATOR' => 'Book  Illustrator',
+            'BOOK_PUBLISHER' => 'Book  Publisher',
+            'BOOK_PUBLICATIONDATE' => 'Book  Publicationdate',
+            'LANGUAGE_ID' => 'Language  ID',
+            'BOOK_SUMMARY' => 'Book  Summary',
+            'BOOK_DESCRIPTION' => 'Book  Description',
+            'BOOK_TAGS' => 'Book  Tags',
+            'BOOKCOUNT_PAGES' => 'Bookcount  Pages',
+            'BOOKCOVER_IMAGE' => 'Bookcover  Image',
             'IS_ACTIVE' => 'Is  Active',
         ];
     }
@@ -125,8 +114,8 @@ class TblBookCover extends \yii\db\ActiveRecord
      /**
      * @return \yii\db\ActiveQuery
      */
-    // public function getColor()
-    // {
-    //     return $this->hasOne(TblColor::className(), ['COLOR_ID' => 'COLOR_ID']);
-    // }
+    public function getColor()
+    {
+        return $this->hasOne(TblColor::className(), ['COLOR_ID' => 'COLOR_ID']);
+    }
 }

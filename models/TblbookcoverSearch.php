@@ -19,8 +19,8 @@ class TblbookcoverSearch extends TblBookCover
     public function rules()
     {
         return [
-            [['BOOKCOVER_ID', 'CATEGORY_ID', 'COLOR_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'CATEGORYCONTENT_ID','BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'safe'],
+            [['BOOKCOVER_ID', 'CATEGORY_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
+            [['BOOK_TITLE', 'BOOK_AUTHOR','COLOR_VALUE', 'CATEGORYCONTENT_ID','BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class TblbookcoverSearch extends TblBookCover
             'BOOKCOVER_ID' => $this->BOOKCOVER_ID,
             'CATEGORY_ID' => $this->CATEGORY_ID,
             'CATEGORYCONTENT_ID' => $this->CATEGORYCONTENT_ID,
-            'COLOR_ID' => $this->COLOR_ID,
+            'COLOR_VALUE' => $this->COLOR_VALUE,
             'BOOKCOUNT_PAGES' => $this->BOOKCOUNT_PAGES,
             'IS_ACTIVE' => $this->IS_ACTIVE,
         ]);

@@ -7,6 +7,7 @@ use Yii;
 use app\models\TblBookCover;
 use app\models\TblbookcoverSearch;
 use app\models\TblCategory;
+use app\models\TblCategoryContent;
 use app\models\TblLanguage;
 use app\models\TblColor;
 use app\models\BookcontentSearch;
@@ -107,17 +108,23 @@ class TblbookcoverController extends Controller
     public function actionCreate()
     {
         $model = new TblBookCover();
-
         
 
-
-
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
         
-        $request = Yii::$app->request;
-        $name = $request->post('BOOK_PUBLISHER');
-        print_r($name);
+        if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
+           // save the tag value of description field
+            $POST_VARIABLE=Yii::$app->request->post('TblBookCover');
+            $request = $POST_VARIABLE['BOOK_DESCRIPTION']; 
+            $tags = implode(',', $request);
+            $model->BOOK_DESCRIPTION = $tags;
+            $model->save();
+
+
+            $request2 = $POST_VARIABLE['COLOR_VALUE']; 
+            $tags2 = implode(',', $request2);
+            $model->COLOR_VALUE = $tags2;
+            $model->save();
+            
 
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
             $basepath = Yii::getAlias('@app');
@@ -133,10 +140,10 @@ class TblbookcoverController extends Controller
                     if($image):
                      $image->saveAs($imagepath.$model->BOOKCOVER_IMAGE);
                     endif;
-                endif;             
+                endif;     
 
-           // return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
-
+           return $this->redirect(['view', 'id'=>$model->BOOKCOVER_ID ]);
+          
             
         } else {
             $query = new \yii\db\Query;
@@ -167,6 +174,8 @@ class TblbookcoverController extends Controller
             $rows3      = $command3->queryAll();
             $catecontent     = ArrayHelper::map($rows3, 'CATEGORYCONTENT_ID', 'CATEGORYCONTENT_NAME');
 
+           
+          
 
             return $this->render('create', [
                 'model' => $model,
@@ -175,9 +184,17 @@ class TblbookcoverController extends Controller
                 'language' => $language,
                 'catecontent' => $catecontent,
                 
+                
             ]);
         }
     }
+
+
+    // public function actionLists($id)
+    // {
+
+
+    // }
 
     /**
      * Updates an existing TblBookCover model.

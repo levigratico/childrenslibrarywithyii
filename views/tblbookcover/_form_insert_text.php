@@ -18,7 +18,9 @@ use kartik\select2\Select2;
 <div class="tbl-book-cover-form">
 
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); 
+        // $catecontent=ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME' );
+    ?>
 
 
     <?= $form->field($model, 'CATEGORY_ID')->dropDownList(
@@ -39,9 +41,14 @@ use kartik\select2\Select2;
                                 
                                 
                             ]);?>
+
+
     <?= $form->field($model, 'LANGUAGE_ID')->dropDownList($language) ?>
 
-    <?= $form->field($model, 'COLOR_ID')->dropDownList($colors)?>
+    <?= $form->field($model, 'COLOR_VALUE')->dropDownList($colors,[
+        'multiple'=>'multiple',
+        'class' => 'chosen-select',
+    ])?>
 
     <?= $form->field($model, 'BOOK_TITLE')->textInput(['maxlength' => true]) ?>
 
@@ -57,13 +64,12 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'BOOK_SUMMARY')->textarea(['rows' => 6]) ?>
 
+<!-- -->
 
    <?= $form->field($model, 'BOOK_DESCRIPTION')->dropDownList($catecontent,[
         'multiple'=>'multiple',
         'class' => 'chosen-select',
-        
     ])?>
-
 
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
 

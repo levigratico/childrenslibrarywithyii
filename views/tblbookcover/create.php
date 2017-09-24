@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
          'colors' => $colors,
          'language' => $language,
          'catecontent' => $catecontent,
+        
     ]) ?>
 
 </div>

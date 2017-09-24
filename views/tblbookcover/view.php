@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
+
     <p>
         <?= Html::a('Update Book Information', ['update', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Update Image', ['update-image', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-success']) ?>
@@ -43,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'BOOKCOVER_ID',
             'category.CATEGORY_TITLE',
             'tblCategoryContent.CATEGORYCONTENT_NAME',
-            'color.COLOR_NAME',
+            'COLOR_VALUE',
             'BOOK_TITLE',
             'BOOK_AUTHOR',
             'BOOK_ILLUSTRATOR',

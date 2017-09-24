@@ -35,10 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'CATEGORYCONTENT_ID',
                 'value' => 'tblCategoryContent.CATEGORYCONTENT_NAME',
             ],
-            [
-                'attribute' => 'COLOR_ID',
-                'value' => 'color.COLOR_NAME',
-            ],
+            // [
+            //     'attribute' => 'COLOR_VALUE',
+            //     'value' => 'color.COLOR_NAME',
+            // ],
+            'COLOR_VALUE',
             'BOOK_TITLE',
             'BOOK_AUTHOR',
             [

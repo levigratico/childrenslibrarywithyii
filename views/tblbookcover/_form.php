@@ -38,6 +38,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'BOOK_DESCRIPTION')->textarea(['rows' => 6]) ?>
 
+   
+
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
   
 
