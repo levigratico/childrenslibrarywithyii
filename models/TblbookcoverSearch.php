@@ -20,7 +20,7 @@ class TblbookcoverSearch extends TblBookCover
     {
         return [
             [['BOOKCOVER_ID', 'CATEGORY_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR','COLOR_VALUE', 'CATEGORYCONTENT_ID','BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION'], 'safe'],
+            [['BOOK_TITLE', 'BOOK_AUTHOR','COLOR_VALUE', 'CATEGORYCONTENT_ID','BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOK_LANGUAGE', 'BOOK_SUMMARY', 'BOOK_DESCRIPTION','ISBN','LOCATION','CODELIBRARY'], 'safe'],
         ];
     }
 
@@ -67,8 +67,11 @@ class TblbookcoverSearch extends TblBookCover
             'COLOR_VALUE' => $this->COLOR_VALUE,
             'BOOKCOUNT_PAGES' => $this->BOOKCOUNT_PAGES,
             'IS_ACTIVE' => $this->IS_ACTIVE,
+            'ISBN' => $this->ISBN,
+            'LOCATION' => $this->LOCATION,
+            'CODELIBRARY' => $this->CODELIBRARY,
         ]);
-
+        
         
         $query->joinWith('tblCategoryContent');
         $query->andFilterWhere(['like', 'BOOK_TITLE', $this->BOOK_TITLE])

@@ -20,8 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList($catecontent)?>
 
-    <?= $form->field($model, 'COLOR_ID')->dropDownList($colors)?>
-
     <?= $form->field($model, 'BOOK_TITLE')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'BOOK_AUTHOR')->textInput(['maxlength' => true]) ?>
@@ -38,7 +36,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'BOOK_DESCRIPTION')->textarea(['rows' => 6]) ?>
 
-   
+    <?= $form->field($model, 'ISBN')->textInput() ?>
+      <?= $form->field($model, 'LOCATION')->textInput() ?>
+       <?= $form->field($model, 'CODELIBRARY')->textInput() ?>
 
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
   

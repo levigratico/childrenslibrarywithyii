@@ -212,12 +212,12 @@ class TblbookcoverController extends Controller
             $rows = $command->queryAll();
             $items = ArrayHelper::map($rows, 'CATEGORY_ID', 'CATEGORY_TITLE');
 
-            $query1 = new \yii\db\Query;
-            $query1->select('COLOR_ID, COLOR_NAME')
-            ->from('tbl_color');
-            $command1   = $query1->createCommand();
-            $rows1      = $command1->queryAll();
-            $colors     = ArrayHelper::map($rows1, 'COLOR_ID', 'COLOR_NAME');
+            // $query1 = new \yii\db\Query;
+            // $query1->select('COLOR_ID, COLOR_NAME')
+            // ->from('tbl_color');
+            // $command1   = $query1->createCommand();
+            // $rows1      = $command1->queryAll();
+            // $colors     = ArrayHelper::map($rows1, 'COLOR_ID', 'COLOR_NAME');
 
             $query2 = new \yii\db\Query;
             $query2->select('LANGUAGE_ID, LANGUAGE')
@@ -239,9 +239,39 @@ class TblbookcoverController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'items' =>  $items,
-                'colors' => $colors,
+                // 'colors' => $colors,
                 'language' => $language,
                 'catecontent' => $catecontent,
+            ]);
+        }
+    }
+
+    public function actionUpdateColor($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = "update-color"; 
+        $POST_VARIABLE=Yii::$app->request->post('TblBookCover');
+        
+        $query1 = new \yii\db\Query;
+            $query1->select('COLOR_ID, COLOR_NAME')
+            ->from('tbl_color');
+            $command1   = $query1->createCommand();
+            $rows1      = $command1->queryAll();
+            $colors     = ArrayHelper::map($rows1, 'COLOR_ID', 'COLOR_NAME');  
+
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $request2 = $POST_VARIABLE['COLOR_VALUE']; 
+            $tags2 = implode(',', $request2);
+            $model->COLOR_VALUE = $tags2;
+            $model->save();
+
+            return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
+        } else {
+            return $this->render('update-color', [
+                'model' => $model,
+                'colors' => $colors,
             ]);
         }
     }

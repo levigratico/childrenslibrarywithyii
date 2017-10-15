@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
 
-$this->title = $model->BOOKCOVER_ID;
+$this->title = $model->BOOK_TITLE;
 $this->params['breadcrumbs'][] = ['label' => 'Book Covers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

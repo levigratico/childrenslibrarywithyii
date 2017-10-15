@@ -47,12 +47,13 @@ class TblBookCover extends \yii\db\ActiveRecord
             [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'BOOK_TITLE'], 'required'],
             [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'LANGUAGE_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
             [['BOOK_SUMMARY'], 'string'],
-            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOKCOVER_IMAGE'], 'string', 'max' => 100],
+            [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOKCOVER_IMAGE','ISBN','LOCATION','CODELIBRARY'], 'string', 'max' => 100],
             [['BOOK_PUBLICATIONDATE'], 'string', 'max' => 20],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],
             [['LANGUAGE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblLanguage::className(), 'targetAttribute' => ['LANGUAGE_ID' => 'LANGUAGE_ID']],
             // [['COLOR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblColor::className(), 'targetAttribute' => ['COLOR_ID' => 'COLOR_ID']],
             [['BOOKCOVER_IMAGE'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['COLOR_VALUE'], 'required'],
         ];
     }
 
@@ -60,6 +61,8 @@ class TblBookCover extends \yii\db\ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['update-image'] = ['image'];
+
+        $scenarios['update-color'] = ['COLOR_VALUE'];
         return $scenarios;
     }
 
@@ -87,6 +90,9 @@ class TblBookCover extends \yii\db\ActiveRecord
             'BOOKCOUNT_PAGES' => 'How many pages?',
             'BOOKCOVER_IMAGE' => 'Cover Image',
             'IS_ACTIVE' => 'Is  Active',
+            'ISBN' => 'ISBN',
+            'LOCATION' => 'LOCATION',
+            'CODELIBRARY'=>'CODELIBRARY',
         ];
     }
 

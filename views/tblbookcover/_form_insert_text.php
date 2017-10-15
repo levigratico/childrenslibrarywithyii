@@ -73,6 +73,10 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'BOOKCOUNT_PAGES')->textInput() ?>
 
+     <?= $form->field($model, 'ISBN')->textInput() ?>
+      <?= $form->field($model, 'LOCATION')->textInput() ?>
+       <?= $form->field($model, 'CODELIBRARY')->textInput() ?>
+
     <?= $form->field($model, 'BOOKCOVER_IMAGE')->fileInput() ?>
    
 
