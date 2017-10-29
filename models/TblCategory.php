@@ -18,6 +18,12 @@ use Yii;
  */
 class TblCategory extends \yii\db\ActiveRecord
 {
+
+    public $id;
+    public $title;
+    public $image;
+    public $description;
+
     /**
      * @inheritdoc
      */

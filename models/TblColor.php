@@ -17,6 +17,12 @@ class TblColor extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $id;
+    public $name;
+    public $value;
+
+
     public static function tableName()
     {
         return 'tbl_color';

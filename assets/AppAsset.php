@@ -23,10 +23,8 @@ class AppAsset extends AssetBundle
         'template/vendor/metisMenu/metisMenu.min.css',
         'template/dist/css/sb-admin-2.css',
         'template/vendor/font-awesome/css/font-awesome.min.css',
-        'color_picker/css/colorpicker.css' ,
+        'color_picker/css/colorpicker.css',
         'bootstrap-chosen-master/bootstrap-chosen.css'
-        
-
     ];  
     public $js = [
         // 'template/vendor/jquery/jquery.min.js',
