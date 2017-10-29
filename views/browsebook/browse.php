@@ -44,10 +44,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default" style="border-radius: 20px; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; height: 90px">
-                    <i class="fa fa-angle-left" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; float: left; vertical-align: middle; line-height: 65px;"></i>
-
-                    <i class="fa fa-angle-right" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; float: right; vertical-align: middle; line-height: 65px;"></i>
+                <div style="height: 90px; margin-bottom: 20px;">
+                    <i class="fa fa-angle-left" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; left: 20px; bottom: 35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
+                    <i class="fa fa-angle-right" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; right: 20px; bottom:35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
+                    <div style="height: 100%; margin: 0 5%; overflow-x: scroll; overflow-y: hidden; white-space:nowrap">
+                    </div>
                 </div>
             </div>
         </div>
