@@ -20,8 +20,7 @@ class AppBookSearchAsset extends AssetBundle
     public $css = [
                     'template/vendor/bootstrap/css/bootstrap.min.css',
                     'template/vendor/font-awesome/css/font-awesome.min.css',
-                    'template/vendor/font-awesome/css/font-awesome.min.css',
-                    'https://fonts.googleapis.com/css?family=Asap'
+                    'https://fonts.googleapis.com/css?family=Asap',
                   ];
 
     public $js = [

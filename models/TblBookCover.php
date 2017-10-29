@@ -34,6 +34,7 @@ class TblBookCover extends \yii\db\ActiveRecord
     public $id;
     public $title;
     public $author;
+    public $image;
 
 
     /**

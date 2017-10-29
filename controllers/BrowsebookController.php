@@ -57,6 +57,7 @@ class BrowsebookController extends Controller
          $request = Yii::$app->request;
          $query = TblBookCover::find()->select([
                                                      "id" => "BOOKCOVER_ID",
+                                                  "image" => "BOOKCOVER_IMAGE",
                                                   "title" => "BOOK_TITLE",
                                                  "author" => "BOOK_AUTHOR"
                                                ])
