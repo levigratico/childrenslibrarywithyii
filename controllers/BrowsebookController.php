@@ -69,6 +69,13 @@ class BrowsebookController extends Controller
          $models = $query->offset($offset)->limit($pages->limit)->all();
          return $models;
      }
+
+
+     function actionBookdescription() {
+        Yii::$app->view->title = "Childrens Library";
+        $this->layout = "bookdescriptionlayout";
+        return $this->render("description");
+     }
 }
 
 
