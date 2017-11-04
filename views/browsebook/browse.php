@@ -29,18 +29,16 @@
                 </div>
                 <div class="panel panel-default" style="border-radius: 20px; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; height: 475px;">
                     <h1 style="text-align: center; font-family: 'Asap', sans-serif; font-weight: bold; line-height: 75px; font-size: 4em">Browse To Amaze</h1>
-                    <div class="panel-body" style="border-radius: 20px; background-color: #1ab7ea; height: 350px; position: absolute; width: 94.6%;">
+                    <div class="panel-body" style="border-radius: 20px; background-color: #1ab7ea; height: 350px; position: absolute; width: 94.6%;" ng ng-controller="bookCoverController">
                         <i class="fa fa-angle-left arrow" aria-hidden="true" style="color: rgba(0,0,0, 0.1); font-size: 200px; left: 10px;vertical-align: middle; line-height: 300px; position: absolute"></i>
                         <i class="fa fa-angle-right arrow" aria-hidden="true" style="color: rgba(0,0,0, 0.1); font-size: 200px; right: 10px; vertical-align: middle; line-height: 300px; position: absolute"></i>
                         <div style="height: 320px; padding: 20px; padding-top: 40px; margin: 0 1%; overflow-x: scroll; overflow-y: hidden; white-space:nowrap">
-                            <?php foreach($bookcovers as $bookcover): ?>
-                            <div style="width: 200px; display: inline-block; padding-right: 10px;">
-                                    <input type="hidden" value="<?= $bookcover->id ?>">
-                                    <img src="<?= "upload_bookcover/" . $bookcover->image ?>" style="width: 100%; height: 200px;">
-                                    <div style="text-align: center; font-size: 100%"><?= $bookcover->title ?></div>
-                                    <div style="text-align: center; font-size: 100%"><?= $bookcover->author ?></div>
+                            <div style="width: 200px; display: inline-block; padding-right: 10px; cursor: pointer" ng-repeat="bookcover in bookcovers" my-book-list>
+                                    <input type="hidden" value="{{ bookcover.id }}">
+                                    <img src="upload_bookcover/{{ bookcover.image }}" style="width: 100%; height: 200px;">
+                                    <div style="text-align: center; font-size: 100%">{{ bookcover.title }}</div>
+                                    <div style="text-align: center; font-size: 100%">{{ bookcover.author }}</div>
                             </div>
-                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

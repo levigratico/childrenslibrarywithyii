@@ -45,14 +45,13 @@ class BrowsebookController extends Controller
 
          return $this->render("browse", [
                                                   "colors"  => $colors,
-                                              "categories"  => $category,
-                                              "bookcovers"  => $this->paginateBook()
+                                              "categories"  => $category
                                               ]);
      }
 
 
 
-     function paginateBook()
+     function actionPaginatebook()
      {
          $request = Yii::$app->request;
          $query = TblBookCover::find()->select([
@@ -67,7 +66,7 @@ class BrowsebookController extends Controller
          $pages->pageSize = 6;
          $offset = count($request->bodyParams) > 0 ? $request->getBodyParams("offset") : 0;
          $models = $query->offset($offset)->limit($pages->limit)->all();
-         return $models;
+         echo json_encode($models);
      }
 
 
@@ -75,6 +74,7 @@ class BrowsebookController extends Controller
         Yii::$app->view->title = "Childrens Library";
         $this->layout = "bookdescriptionlayout";
         return $this->render("description");
+        
      }
 }
 

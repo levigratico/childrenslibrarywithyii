@@ -26,7 +26,8 @@ class AppBookSearchAsset extends AssetBundle
     public $js = [
                     'js/jquery.min.js',
                     'template/vendor/bootstrap/js/bootstrap.min.js',
-                    'js/angular.min.js'
+                    'js/angular.min.js',
+                    'js/browse.js'
                  ];
 
 }
