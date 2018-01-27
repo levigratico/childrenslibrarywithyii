@@ -2,9 +2,10 @@ var app = angular.module('browseApp', []);
 
 app.factory('redirectToDescription', function () {
     return {
-        whenClick: function (object) {
+        whenClick: function (object, path) {
           //TODO: Redirect logic
            var id = object.children().eq(0).val();
+            window.location = "http://localhost/childrenslibrarywithyii/web/index.php?r=browsebook/bookdescription&id=" + id;
         }
     }
 });
@@ -39,12 +40,12 @@ app.factory('bookcoverModel', function () {
 });
 
 
-app.directive('myBookList', [ 'redirectToDescription', function (redirectToDescription) {
+app.directive('myBookList', [ 'redirectToDescription', '$location', function (redirectToDescription, $location) {
     return {
         restrict: 'A',
         link: function ($scope, element, attributes) {
             element.bind('click', function () {
-                redirectToDescription.whenClick(element);
+                redirectToDescription.whenClick(element, $location.path());
             });
         }
     }
