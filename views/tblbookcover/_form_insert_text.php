@@ -22,28 +22,38 @@ use kartik\select2\Select2;
         // $catecontent=ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME' );
     ?>
 
+    <?php
+        echo $form->field($model, 'CATEGORY_ID')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map( TblCategory::find()->all(), 'CATEGORY_ID','CATEGORY_TITLE'),
+            'language' => 'de',
+            'options' => ['placeholder' => 'Select Category ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+    ?>
 
-    <?= $form->field($model, 'CATEGORY_ID')->dropDownList(
-                            ArrayHelper::map( TblCategory::find()->all(), 'CATEGORY_ID','CATEGORY_TITLE'),
-                            [
-                                'prompt'=>'Select Category',
-                                'onchange'=>'
-                                    $.post( "index.php?r=categorycontent/lists&id='.'"+$(this).val(), function(data) {
-                                        $( "select#tblbookcover-categorycontent_id" ).html(data);
-                                    });'
-                                
-                            ]);?>
+    <?php
+        echo $form->field($model, 'CATEGORYCONTENT_ID')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME'),
+            'language' => 'de',
+            'options' => ['placeholder' => 'Select Subcategory ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+    ?>
 
-    <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList(
-                            ArrayHelper::map( TblCategoryContent::find()->all(), 'CATEGORYCONTENT_ID','CATEGORYCONTENT_NAME'),
-                            [
-                                'prompt'=>'Select  Subcategory',
-                                
-                                
-                            ]);?>
-
-
-    <?= $form->field($model, 'LANGUAGE_ID')->dropDownList($language) ?>
+    <?php
+        echo $form->field($model, 'LANGUAGE_ID')->widget(Select2::classname(), [
+            'data' => $language,
+            'language' => 'de',
+            'options' => ['placeholder' => 'Select Subcategory ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+    ?>
 
     <?= $form->field($model, 'COLOR_VALUE')->dropDownList($colors,[
         'multiple'=>'multiple',
