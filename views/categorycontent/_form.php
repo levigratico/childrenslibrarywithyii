@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblCategoryContent */
@@ -17,9 +18,19 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'CATEGORY_ID')->dropDownList($category)?>
 
-    <?= $form->field($model, 'CATEGORYCONTENT_NAME')->textInput(['maxlength' => true]) ?>
+    <?php
+        echo $form->field($model, 'CATEGORY_ID')->widget(Select2::classname(), [
+            'data' => $category,
+            'language' => 'de',
+            'options' => ['placeholder' => 'Select a state ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])->label("Category");
+    ?>
+
+    <?= $form->field($model, 'CATEGORYCONTENT_NAME')->textInput(['maxlength' => true])->label("Sub Category Name") ?>
 
     <?= $form->errorSummary($model); ?>
 

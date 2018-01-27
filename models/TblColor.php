@@ -59,6 +59,6 @@ class TblColor extends \yii\db\ActiveRecord
      */
     public function getTblBookCovers()
     {
-        return $this->hasMany(TblBookCover::className(), ['COLOR_ID' => 'COLOR_ID']);
+        return $this->hasMany(TblBookCover::className(), ['COLOR_VALUE' => 'COLOR_ID']);
     }
 }

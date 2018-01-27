@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
@@ -42,15 +43,34 @@ $this->params['breadcrumbs'][] = $this->title;
                      'height' => '300']);
             },
             ],
-            'BOOKCOVER_ID',
+            // 'BOOKCOVER_ID',
             'category.CATEGORY_TITLE',
             'tblCategoryContent.CATEGORYCONTENT_NAME',
             'COLOR_VALUE',
+            // [
+            //     'label' => 'Color Value',
+            //     'value' => function($model){
+            //         $myString = $model->color->COLOR_NAME;
+            //         $myArray = explode(',', $myString);
+            //         foreach ($myArray as $rowColor) {
+                        
+            //             echo $rowColor;
+            //         }
+
+
+            //     },
+                
+            // ],
+
             'BOOK_TITLE',
             'BOOK_AUTHOR',
             'BOOK_ILLUSTRATOR',
             'BOOK_PUBLISHER',
-            'LANGUAGE_ID',
+            // 'LANGUAGE_ID',
+            [
+                'attribute' => 'LANGUAGE_ID',
+                'value' => $model->language->LANGUAGE,
+            ],
             'BOOK_SUMMARY:ntext',
             'BOOK_DESCRIPTION:ntext',
             'BOOKCOUNT_PAGES',

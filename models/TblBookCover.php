@@ -138,8 +138,8 @@ class TblBookCover extends \yii\db\ActiveRecord
      /**
      * @return \yii\db\ActiveQuery
      */
-    // public function getColor()
-    // {
-    //     return $this->hasOne(TblColor::className(), ['COLOR_ID' => 'COLOR_ID']);
-    // }
+    public function getColor()
+    {
+        return $this->hasOne(TblColor::className(), ['COLOR_ID' => 'COLOR_VALUE']);
+    }
 }

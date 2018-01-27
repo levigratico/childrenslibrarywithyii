@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -9,8 +9,8 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = 'Book covers';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Book Covers and Information';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-book-cover-index">
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
             // 'BOOKCOVER_ID',
 
             'BOOK_TITLE',
@@ -34,15 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'CATEGORY_ID',
                 'value' => 'category.CATEGORY_TITLE',
             ],
-            [
-                'attribute' => 'CATEGORYCONTENT_ID',
-                'value' => 'tblCategoryContent.CATEGORYCONTENT_NAME',
-            ],
+            // [
+            //     'attribute' => 'CATEGORYCONTENT_ID',
+            //     'value' => 'tblCategoryContent.CATEGORYCONTENT_NAME',
+            // ],
             // [
             //     'attribute' => 'COLOR_VALUE',
             //     'value' => 'color.COLOR_NAME',
             // ],
             'COLOR_VALUE',
+            
             [
                 'attribute' => 'BOOKCOVER_IMAGE',
                 'format' => 'html', 
@@ -62,7 +63,37 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'BOOKCOUNT_PAGES',
             // 'IS_ACTIVE',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'template' => '{view} {update} {updateimage} {delete} ', 
+                'buttons'=>
+                [    
+                    'view' => function($url, $model){
+                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span> View Details', ['view', 
+                                'id' => $model->BOOKCOVER_ID], ['class'=>'btn btn-info btn-xs btn-block']);
+                    },
+                    'update' => function($url, $model){
+                         return Html::a('<span class="glyphicon glyphicon-edit"></span> Edit', ['update', 
+                            'id' => $model->BOOKCOVER_ID], ['class'=>'btn btn-primary btn-xs btn-block']);
+                    },
+                    'updateimage' => function($url, $model){
+                         return Html::a('<span class="glyphicon glyphicon-picture" style="color:black;"></span> Update Book Cover Image', ['update-image', 
+                            'id' => $model->BOOKCOVER_ID], ['class'=>'btn btn-default btn-xs btn-block']);
+                    },
+                    'delete'=>function ($url, $model) 
+                    {
+                          return Html::a('<i class="glyphicon glyphicon-trash"></i> Delete', 
+                            [
+                              'tblbookcover/delete', 'id' => $model->CATEGORY_ID
+                            ], 
+                            [
+                              'class' => 'btn btn-danger btn-xs btn-block',
+                              'data' => [
+                                  'confirm' => 'Are you sure you want to delete this?',
+                                  'method' => 'post']
+                            ]);
+                    }
+                ],
+            ],
         ],
     ]); ?>
     <?php Pjax::end() ?>
