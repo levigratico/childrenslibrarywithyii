@@ -32,6 +32,8 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'k' => 
         array (
             'kartik\\select2\\' => 15,
+            'kartik\\grid\\' => 12,
+            'kartik\\dialog\\' => 14,
             'kartik\\color\\' => 13,
             'kartik\\base\\' => 12,
         ),
@@ -119,6 +121,14 @@ class ComposerStaticInitc22a6a76a7e576c519fe0104bbd8dbd7
         'kartik\\select2\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
+        'kartik\\grid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-grid',
+        ),
+        'kartik\\dialog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
         ),
         'kartik\\color\\' => 
         array (
