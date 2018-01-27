@@ -26,7 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'BOOKCOVER_ID',
+            // 'BOOKCOVER_ID',
+
+            'BOOK_TITLE',
+            'BOOK_AUTHOR',
             [
                 'attribute' => 'CATEGORY_ID',
                 'value' => 'category.CATEGORY_TITLE',
@@ -40,8 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //     'value' => 'color.COLOR_NAME',
             // ],
             'COLOR_VALUE',
-            'BOOK_TITLE',
-            'BOOK_AUTHOR',
             [
                 'attribute' => 'BOOKCOVER_IMAGE',
                 'format' => 'html', 

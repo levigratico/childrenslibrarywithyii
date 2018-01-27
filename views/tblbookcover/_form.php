@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblBookCover */
@@ -15,8 +16,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    
-    <?= $form->field($model, 'CATEGORY_ID')->dropDownList($items)?>
+    <?php
+        echo $form->field($model, 'CATEGORY_ID')->widget(Select2::classname(), [
+            'data' => $items,
+            'language' => 'de',
+            'options' => ['placeholder' => 'Select a category ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+    ?>
 
     <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList($catecontent)?>
 

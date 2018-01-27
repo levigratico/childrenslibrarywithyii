@@ -371,12 +371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-colorinput.git",
-                "reference": "4dc75753ab88b37f6445d63dd7e79f3dbf4040f4"
+                "reference": "63f0457e16fa4064d6f5d40eea189a1e2280595e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-colorinput/zipball/4dc75753ab88b37f6445d63dd7e79f3dbf4040f4",
-                "reference": "4dc75753ab88b37f6445d63dd7e79f3dbf4040f4",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-colorinput/zipball/63f0457e16fa4064d6f5d40eea189a1e2280595e",
+                "reference": "63f0457e16fa4064d6f5d40eea189a1e2280595e",
                 "shasum": ""
             },
             "require": {
@@ -417,7 +417,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-03-09T14:26:42+00:00"
+            "time": "2017-09-22T12:51:04+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -425,12 +425,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "2c3f47527c783d5d03e778b40d0f1a0f28f6e541"
+                "reference": "32761540146d1d5b65c383730a9c9c78ee449069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/2c3f47527c783d5d03e778b40d0f1a0f28f6e541",
-                "reference": "2c3f47527c783d5d03e778b40d0f1a0f28f6e541",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/32761540146d1d5b65c383730a9c9c78ee449069",
+                "reference": "32761540146d1d5b65c383730a9c9c78ee449069",
                 "shasum": ""
             },
             "require": {
@@ -470,7 +470,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-04T15:30:52+00:00"
+            "time": "2017-12-03T08:02:21+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
