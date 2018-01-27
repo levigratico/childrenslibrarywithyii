@@ -26,7 +26,25 @@ AppBookSearchAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <style type="text/css" media="screen"></style>
+    <style type="text/css" media="screen">
+        .content-slider li, .main-slider li{
+            background-color: #ed3020;
+            text-align: center;
+            color: #FFF;
+        }
+        .content-slider h3, .main-slider div {
+            margin: 0;
+        }
+        .content-slider h3 {
+            padding: 70px 0;
+        }
+
+        .main-slider div {
+            padding: 70px 0;
+            height: 500px;
+        }
+
+    </style>
 </head>
 <body style="background-image: url('images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
 <?php $this->beginBody() ?>
