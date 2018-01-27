@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\TblCategoryContent */
 
-$this->title = 'Update Tbl Category Content: ' . $model->CATEGORYCONTENT_ID;
-$this->params['breadcrumbs'][] = ['label' => 'Tbl Category Contents', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->CATEGORYCONTENT_ID, 'url' => ['view', 'id' => $model->CATEGORYCONTENT_ID]];
+$this->title = 'Update Sub Category: ' . $model->CATEGORYCONTENT_NAME;
+$this->params['breadcrumbs'][] = ['label' => 'Sub Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->CATEGORYCONTENT_NAME, 'url' => ['view', 'id' => $model->CATEGORYCONTENT_ID]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tbl-category-content-update">

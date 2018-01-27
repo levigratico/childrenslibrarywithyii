@@ -122,9 +122,9 @@ AppAsset::register($this);
     }
     span.glyphicon
     {
-        color:rgb(61,140,187);
-        font-size: 20px;
-        padding-top: 10px;
+        color:white;
+        /*font-size: 20px;
+        padding-top: 10px;*/
     }
     
     ul.breadcrumb li a
@@ -219,10 +219,10 @@ AppAsset::register($this);
                             <a href="#"><i class="glyphicon glyphicon-book"></i>&nbsp; Books</a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= Url::to('index.php?r=tblbookcover%2Findex')?>">Cover page/Information</a>
+                                    <?= Html::a('<span class="hide-menu">Cover Page/Information</span>', ['tblbookcover/index'])?>
                                 </li>
                                 <li>
-                                    <a href="<?= Url::to('index.php?r=bookcontent%2Fmultiple')?>">Upload Content</a>
+                                    <?= Html::a('<span class="hide-menu">Upload Content</span>', ['bookcontent/multiple'])?>
                                 </li>
                             </ul>
 
@@ -231,28 +231,28 @@ AppAsset::register($this);
                             <a href="#"><i class="glyphicon glyphicon-tags"></i> &nbsp;Category</a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= Url::to('index.php?r=category%2Findex')?>">List</a>
+                                    <?= Html::a('<span class="hide-menu"> List </span>', ['category/index'])?>
                                 </li>
                                 <li>
-                                    <a href="<?= Url::to('index.php?r=categorycontent%2Findex')?>">Content</a>
+                                    <?= Html::a('<span class="hide-menu"> Content </span>', ['categorycontent/index'])?>
                                 </li>
                             </ul>
 
                         </li>
                         <li>
-                            <a href="<?= Url::to('index.php?r=color%2Findex')?>"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Color</a>
+                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-adjust"></i>&nbsp; Colors </span>', ['color/index'])?>
                         </li>
-                         <li>
-                            <a href="<?= Url::to('index.php?r=language%2Findex')?>"><i class="glyphicon glyphicon-globe"></i>&nbsp; Language</a>
+                        <li>
+                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-globe"></i>&nbsp; Languages </span>', ['language/index'])?>
                         </li>
                         <!-- <li>
                             <a href="index.html"><i class="glyphicon glyphicon-user"></i>&nbsp; Accounts</a>
                         </li> -->
                         <li>
-                            <a href="<?= Url::to('index.php?r=batch%2Fcreate')?>"><i class="glyphicon glyphicon-save"></i>&nbsp; Import CSV</a>
+                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-save"></i>&nbsp; Import CSV </span>', ['batch/create'])?>
                         </li>
                        <li>
-                            <a href="<?= Url::to('index.php?r=searchbook%2Findex')?>" target="_blank"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Children's Library</a>
+                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-th-list"></i>&nbsp;  Library Website</span>', ['searchbook/index'])?>
                         </li>
                        
                        

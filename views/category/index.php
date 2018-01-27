@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Categories';
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-category-index">
 
@@ -40,7 +40,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'CATEGORY_DESCRIPTION:ntext',
             
 
-            ['class' => 'kartik\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'template' => '{view} {update} {updateimage} {delete} ', 
+                'buttons'=>
+                [    
+                    'view' => function($url, $model){
+                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span> View', ['view', 
+                                'id' => $model->CATEGORY_ID], ['class'=>'btn btn-info btn-xs btn-block']);
+                    },
+                    'update' => function($url, $model){
+                         return Html::a('<span class="glyphicon glyphicon-edit"></span> Edit', ['update', 
+                            'id' => $model->CATEGORY_ID], ['class'=>'btn btn-primary btn-xs btn-block']);
+                    },
+                    'updateimage' => function($url, $model){
+                         return Html::a('<span class="glyphicon glyphicon-picture" style="color:black;"></span> Update Icon', ['update-image', 
+                            'id' => $model->CATEGORY_ID], ['class'=>'btn btn-default btn-xs btn-block']);
+                    },
+                    'delete'=>function ($url, $model) 
+                    {
+                          return Html::a('<i class="glyphicon glyphicon-trash"></i> Delete', 
+                            [
+                              'category/delete', 'id' => $model->CATEGORY_ID
+                            ], 
+                            [
+                              'class' => 'btn btn-danger btn-xs btn-block',
+                              'data' => [
+                                  'confirm' => 'Are you sure you want to delete this?',
+                                  'method' => 'post']
+                            ]);
+                    }
+                ],
+            ],
         ],
     ]); ?>
 </div>

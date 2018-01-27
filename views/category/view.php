@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-category-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Details: <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->CATEGORY_ID], ['class' => 'btn btn-primary']) ?>
