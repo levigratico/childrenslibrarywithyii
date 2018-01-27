@@ -28,7 +28,7 @@ AppBookSearchAsset::register($this);
     <?php $this->head() ?>
     <style type="text/css" media="screen"></style>
 </head>
-<body>
+<body style="background-image: url('images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
 <?php $this->beginBody() ?>
 <?= $content ?>
 <?php $this->endBody() ?>

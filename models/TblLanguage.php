@@ -12,6 +12,10 @@ use Yii;
  */
 class TblLanguage extends \yii\db\ActiveRecord
 {
+    public $id;
+    public $language;
+
+
     /**
      * @inheritdoc
      */

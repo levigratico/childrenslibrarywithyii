@@ -64,7 +64,7 @@ class BrowsebookController extends Controller
          $countQuery = clone $query;
          $pages = new Pagination(['totalCount' => $countQuery->count()]);
          $pages->pageSize = 6;
-         $offset = count($request->bodyParams) > 0 ? $request->getBodyParams("offset") : 0;
+         $offset = count($request->get()) > 0 ? $request->get("offset") : 0;
          $models = $query->offset($offset)->limit($pages->limit)->all();
          echo json_encode($models);
      }
@@ -73,7 +73,9 @@ class BrowsebookController extends Controller
      function actionBookdescription() {
         Yii::$app->view->title = "Childrens Library";
         $this->layout = "bookdescriptionlayout";
-        return $this->render("description");
+        $id = Yii::$app->request->get("id");
+        $data = TblBookCover::findOne($id);
+        return $this->render("description", ["description" => $data ]);
         
      }
 }
