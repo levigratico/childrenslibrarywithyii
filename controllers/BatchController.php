@@ -88,13 +88,13 @@ class BatchController extends Controller
 
                     if($handle){
                        if($model->save()){
-                        while ( ($line = fgetcsv($handle, 1000, ";")) != FALSE) {
+                        while ( ($line = fgetcsv($handle, 1000, ",")) != FALSE) {
 
                             $bulkInsertArray[] = [
                                 
                                 'CATEGORY_ID' => isset($line[0]) ? $line[0] : null,
                                 'CATEGORYCONTENT_ID' => isset($line[1]) ? $line[1] : null,
-                                'COLOR_ID' => isset($line[2]) ? $line[2] : null,
+                                'COLOR_VALUE' => isset($line[2]) ? $line[2] : null,
                                 'BOOK_TITLE' => isset($line[3]) ? $line[3] : null,
                                 'BOOK_AUTHOR' => isset($line[4]) ? $line[4] : null,
                                 'BOOK_ILLUSTRATOR' => isset($line[5]) ? $line[5] : null,
@@ -104,7 +104,11 @@ class BatchController extends Controller
                                 'BOOK_SUMMARY' => isset($line[9]) ? $line[9] : null,
                                 'BOOK_DESCRIPTION' => isset($line[10]) ? $line[10] : null,
                                 'BOOKCOUNT_PAGES' => isset($line[11]) ? $line[11] : null,
-                                'BOOKCOVER_IMAGE' =>isset($line[12]) ? $line[12] : null,
+                                'ISBN' => isset($line[12]) ? $line[12] : null,
+                                'LOCATION' => isset($line[13]) ? $line[13] : null,
+                                'CODELIBRARY' => isset($line[14]) ? $line[14] : null,   
+
+
                             ];
                            
                         }
@@ -112,7 +116,7 @@ class BatchController extends Controller
                        fclose($handle);
 
                        $tableName = "tbl_book_cover";
-                       $columnNameArray = ['CATEGORY_ID','CATEGORYCONTENT_ID','COLOR_ID','BOOK_TITLE','BOOK_AUTHOR','BOOK_ILLUSTRATOR','BOOK_PUBLISHER','BOOK_PUBLICATIONDATE','LANGUAGE_ID','BOOK_SUMMARY','BOOK_DESCRIPTION','BOOKCOUNT_PAGES','BOOKCOVER_IMAGE'];
+                       $columnNameArray = ['CATEGORY_ID','CATEGORYCONTENT_ID','COLOR_VALUE','BOOK_TITLE','BOOK_AUTHOR','BOOK_ILLUSTRATOR','BOOK_PUBLISHER','BOOK_PUBLICATIONDATE','LANGUAGE_ID','BOOK_SUMMARY','BOOK_DESCRIPTION','BOOKCOUNT_PAGES','ISBN','LOCATION','CODELIBRARY'];
                        Yii::$app->db->createCommand()->batchInsert($tableName, $columnNameArray, $bulkInsertArray)->execute();
                         // print_r($bulkInsertArray);
                     }

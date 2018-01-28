@@ -24,7 +24,8 @@ class AppAsset extends AssetBundle
         'template/dist/css/sb-admin-2.css',
         'template/vendor/font-awesome/css/font-awesome.min.css',
         'color_picker/css/colorpicker.css',
-        'bootstrap-chosen-master/bootstrap-chosen.css'
+        'bootstrap-chosen-master/bootstrap-chosen.css',
+        'css/detailview_custom.css',
     ];  
     public $js = [
         // 'template/vendor/jquery/jquery.min.js',

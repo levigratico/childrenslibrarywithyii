@@ -108,17 +108,15 @@ class TblbookcoverController extends Controller
     public function actionCreate()
     {
         $model = new TblBookCover();
-        
-
+    
         
         if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
            // save the tag value of description field
             $POST_VARIABLE=Yii::$app->request->post('TblBookCover');
-            $request = $POST_VARIABLE['BOOK_DESCRIPTION']; 
+            $request = $POST_VARIABLE['CATEGORYCONTENT_ID']; 
             $tags = implode(',', $request);
-            $model->BOOK_DESCRIPTION = $tags;
+            $model->CATEGORYCONTENT_ID = $tags;
             $model->save();
-
 
             $request2 = $POST_VARIABLE['COLOR_VALUE']; 
             $tags2 = implode(',', $request2);
@@ -303,7 +301,7 @@ class TblbookcoverController extends Controller
                     endif;
                 endif;             
 
-            return $this->redirect(['view', 'id' => $model->BOOKCOVER_ID]);
+            return $this->redirect(['update-image', 'id' => $model->BOOKCOVER_ID]);
         } else {
             return $this->render('update-image', [
                 'model' => $model,

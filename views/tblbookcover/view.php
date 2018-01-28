@@ -14,13 +14,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-book-cover-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Book Information: <?= Html::encode($this->title) ?></h1>
 
 
 
     <p>
         <?= Html::a('Update Book Information', ['update', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Update Image', ['update-image', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Update Book Cover', ['update-image', 'id' => $model->BOOKCOVER_ID], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->BOOKCOVER_ID], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -30,53 +30,90 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
-                'attribute' => 'BOOKCOVER_IMAGE',
-                'format' => 'html', 
-                'label' => 'Book Cover',
-                'value' => function ($data) {
-                return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
-                    ['width' => '200', 
-                     'height' => '300']);
-            },
-            ],
-            // 'BOOKCOVER_ID',
-            'category.CATEGORY_TITLE',
-            'tblCategoryContent.CATEGORYCONTENT_NAME',
-            'COLOR_VALUE',
-            // [
-            //     'label' => 'Color Value',
-            //     'value' => function($model){
-            //         $myString = $model->color->COLOR_NAME;
-            //         $myArray = explode(',', $myString);
-            //         foreach ($myArray as $rowColor) {
+   
+
+    <div class="row">
+        <div class="col-sm-6">
+             <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'category.CATEGORY_TITLE',
+                        'tblCategoryContent.CATEGORYCONTENT_NAME',
+                        'COLOR_VALUE',
+                        // [
+                        //     'label' => 'Color Value',
+                        //     'value' => function($model){
+                        //         $myString = $model->color->COLOR_NAME;
+                        //         $myArray = explode(',', $myString);
+                        //         foreach ($myArray as $rowColor) {
+                                    
+                        //             echo $rowColor;
+                        //         }
+
+
+                        //     },
+                            
+                        // ],
+                        'BOOK_TITLE',
+                        'BOOK_AUTHOR',
+                        'BOOK_ILLUSTRATOR',
+                        'BOOK_PUBLISHER',
+                        // 'LANGUAGE_ID',
+                        [
+                            'attribute' => 'LANGUAGE_ID',
+                            'value' => $model->language->LANGUAGE,
+                        ],
+                        'BOOKCOUNT_PAGES',
                         
-            //             echo $rowColor;
-            //         }
+                    ],
+                ]) ?>
+        </div>
+        <div class="col-sm-6">
 
-
-            //     },
+            <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        [
+                            'attribute' => 'BOOKCOVER_IMAGE',
+                            'format' => 'html', 
+                            'label' => 'Book Cover',
+                            'value' => function ($data) {
+                            return Html::img(Yii::getAlias('@web').'/upload_bookcover/'.$data['BOOKCOVER_IMAGE'],
+                                ['width' => '200', 
+                                 'height' => '300']);
+                        },
+                        ],
+                    ],
+                ]) ?>
                 
-            // ],
-
-            'BOOK_TITLE',
-            'BOOK_AUTHOR',
-            'BOOK_ILLUSTRATOR',
-            'BOOK_PUBLISHER',
-            // 'LANGUAGE_ID',
-            [
-                'attribute' => 'LANGUAGE_ID',
-                'value' => $model->language->LANGUAGE,
-            ],
-            'BOOK_SUMMARY:ntext',
-            'BOOK_DESCRIPTION:ntext',
-            'BOOKCOUNT_PAGES',
-            
-        ],
-    ]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                <h3>Summary</h3>
+                <?= DetailView::widget([
+                            'model' => $model,
+                            'attributes' => [
+                                'BOOK_SUMMARY:ntext',
+                            ],
+                        ]) ?>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <h3>Decription</h3>
+                <?= DetailView::widget([
+                            'model' => $model,
+                            'attributes' => [
+                                'BOOK_DESCRIPTION:ntext',
+                            ],
+                        ]) ?>
+            </p>
+        </div>
+    </div>
+    
+    
 
     <br/>
 
@@ -94,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'BOOKCONTENT_ID',
+            // 'BOOKCONTENT_ID',
             // [
             //     'attribute' => 'BOOKCOVER_ID',
             //     'value' => 'bookcover.BOOK_TITLE',

@@ -28,10 +28,7 @@ use kartik\select2\Select2;
                     ],
                 ]);
             ?>
-            <?= $form->field($model, 'CATEGORYCONTENT_ID')->dropDownList($catecontent,[
-                'multiple'=>'multiple',
-                'class' => 'chosen-select',
-            ])->label("Tag")?>
+            
 
             <?= $form->field($model, 'BOOK_TITLE')->textInput(['maxlength' => true]) ?>
 

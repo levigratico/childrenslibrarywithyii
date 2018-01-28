@@ -29,7 +29,7 @@ $this->title = 'Book Covers and Information';
             // 'BOOKCOVER_ID',
 
             'BOOK_TITLE',
-            'BOOK_AUTHOR',
+            // 'BOOK_AUTHOR',
             [
                 'attribute' => 'CATEGORY_ID',
                 'value' => 'category.CATEGORY_TITLE',
@@ -42,7 +42,7 @@ $this->title = 'Book Covers and Information';
             //     'attribute' => 'COLOR_VALUE',
             //     'value' => 'color.COLOR_NAME',
             // ],
-            'COLOR_VALUE',
+            // 'COLOR_VALUE',
             
             [
                 'attribute' => 'BOOKCOVER_IMAGE',
@@ -83,7 +83,7 @@ $this->title = 'Book Covers and Information';
                     {
                           return Html::a('<i class="glyphicon glyphicon-trash"></i> Delete', 
                             [
-                              'tblbookcover/delete', 'id' => $model->CATEGORY_ID
+                              'tblbookcover/delete', 'id' => $model->BOOKCOVER_ID
                             ], 
                             [
                               'class' => 'btn btn-danger btn-xs btn-block',

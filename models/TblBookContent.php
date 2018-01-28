@@ -33,7 +33,7 @@ class TblBookContent extends \yii\db\ActiveRecord
             [['BOOKCOVER_ID', 'BOOKPAGES_IMAGE'], 'required'],
             [['BOOKCOVER_ID'], 'integer'],
             [['BOOKPAGES_IMAGE'], 'file', 'extensions' => 'png,jpg','maxFiles'=>0,'skipOnEmpty'=>false],
-            [['BOOKCOVER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblBookCover::className(), 'targetAttribute' => ['BOOKCOVER_ID' => 'BOOKCOVER_ID']],
+            // [['BOOKCOVER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblBookCover::className(), 'targetAttribute' => ['BOOKCOVER_ID' => 'BOOKCOVER_ID']],
         ];
     }
 
