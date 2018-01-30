@@ -35,9 +35,28 @@ AppBookSearchAsset::register($this);
                }
         .arrow:hover {  color: #000000 !important;  }
 
+        .button {
+                padding: 15px 25px;
+                font-size: 24px;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 15px;
+                box-shadow: 0 9px #999;
+              }
+
+        .button:hover {background-color: #3e8e41}
+
+        .button:active {
+          background-color: #3e8e41;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+
     </style>
 </head>
-<body style="background-image: url('images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
+<body style="background-image: url('/childrenslibrarywithyii/web/images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
 <?php $this->beginBody() ?>
 <?= $content ?>
 <?php $this->endBody() ?>

@@ -58,7 +58,9 @@ class BrowsebookController extends Controller
                                                      "id" => "BOOKCOVER_ID",
                                                   "image" => "BOOKCOVER_IMAGE",
                                                   "title" => "BOOK_TITLE",
-                                                 "author" => "BOOK_AUTHOR"
+                                                 "author" => "BOOK_AUTHOR",
+                                               "colorTag" => "COLOR_VALUE",
+                                            "categoryTag" => "CATEGORYCONTENT_ID"
                                                ])
                                      ->where(["IS_ACTIVE" => 1]);
          $countQuery = clone $query;
@@ -77,6 +79,72 @@ class BrowsebookController extends Controller
         $data = TblBookCover::findOne($id);
         return $this->render("description", ["description" => $data ]);
         
+     }
+
+
+     function actionQueryfilterbycolor() {
+        $id = Yii::$app->request->get("id");
+        $query = "SELECT * FROM tbl_book_cover WHERE COLOR_VALUE LIKE '%". $id ."%'";
+        $this->findInBookCoverTbl($query, "COLOR_VALUE", $id);
+     }
+
+     function actionQueryfilterbycategory() {
+       $id = Yii::$app->request->get("id");
+       $query = "SELECT * FROM tbl_book_cover WHERE CATEGORYCONTENT_ID LIKE '%". $id ."%'";
+       $this->findInBookCoverTbl($query, "CATEGORYCONTENT_ID", $id);
+     }
+
+
+     function actionQueryfilterwhenremove() {
+        $count = false;
+        $query = "SELECT * FROM tbl_book_cover WHERE ";
+        if(Yii::$app->request->get("idOfCat")) {
+            $count = true;
+            $query .= "CATEGORYCONTENT_ID LIKE '%". Yii::$app->request->get("idOfCat") ."%'";
+        }
+
+        if(Yii::$app->request->get("idOfColor")) {
+           if($count) {
+              $query .= " AND ";
+           }
+           $query .= "COLOR_VALUE LIKE '". Yii::$app->request->get("idOfColor") ."%'";
+        }
+
+      
+        $data = TblBookCover::findBySql($query)->all();
+        $newData = array();
+        foreach ($data as $value) {
+          array_push($newData, [
+                                     "id" => $value->BOOKCOVER_ID,
+                                  "image" => $value->BOOKCOVER_IMAGE,
+                                  "title" => $value->BOOK_TITLE,
+                                 "author" => $value->BOOK_AUTHOR,
+                               "colorTag" => $value->COLOR_VALUE,
+                            "categoryTag" => $value->CATEGORYCONTENT_ID
+                                 ]);
+        }
+
+        echo json_encode($newData);
+     }
+
+     private function findInBookCoverTbl($query, $column, $id) {
+      $data = TblBookCover::findBySql($query)->all();
+       $newData = array();
+       foreach ($data as $value) {
+         $temp = explode(',', $value->$column);
+         if(in_array($id, $temp)) {
+            array_push($newData, [
+                                     "id" => $value->BOOKCOVER_ID,
+                                  "image" => $value->BOOKCOVER_IMAGE,
+                                  "title" => $value->BOOK_TITLE,
+                                 "author" => $value->BOOK_AUTHOR,
+                               "colorTag" => $value->COLOR_VALUE,
+                            "categoryTag" => $value->CATEGORYCONTENT_ID
+                                 ]);
+         }
+       }
+
+       echo json_encode($newData);
      }
 }
 
