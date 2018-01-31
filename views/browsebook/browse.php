@@ -4,7 +4,7 @@
                 <div style="text-align: center"><i class="fa fa-angle-up" aria-hidden="true" style="color: #1ab7ea;font-size: 70px;"></i></div>
                 <div style="height: 450px; overflow-x: hidden; overflow-y: scroll; white-space:nowrap">
                     <?php foreach($categories as $category): ?>
-                    <div style="width:80%; height: 100px; margin: 10px;" ng-click="filter($event)">
+                    <div style="width:80%; height: 100px; margin: 10px;" ng-click="getSubCategories($event)">
                         <input type="hidden" value="<?= $category->id ?>">
                         <img src="<?= "/childrenslibrarywithyii/web/upload_categoryimages/" . $category->image ?>" style="width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button">
                         <div style="font-size:100%; text-align: center; display: block; margin-top: 10px;"><?= $category->title ?></div>
@@ -46,12 +46,16 @@
                     <i class="fa fa-angle-left" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; left: 20px; bottom: 35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
                     <i class="fa fa-angle-right" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; right: 20px; bottom:35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
                     <div style="height: 100%; margin: 0 5%; overflow-x: scroll; overflow-y: hidden; white-space:nowrap">
-                        <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-click="remove($event)" ng-repeat="filter in filters">
+                        <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-repeat="subcategory in subcategories" ng-click="filter($event)">
+                            <input type="hidden" value="{{ subcategory.id }}">
+                             <img src="/childrenslibrarywithyii/web/upload_categorycontentimages/{{ (subcategory.image == '') ? 'categorycontent_81-gator-dancing.jpg' : subcategory.image }}"style="display: inline-block; width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button">
+                            <div style="font-size:100%; text-align: center; display: block; margin-top: 10px;">{{ subcategory.name }}</div>
+                        <!-- <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-click="remove($event)" ng-repeat="filter in filters">
                             <input type="hidden" value="{{ filter.id }}">
                             <img src="{{ filter.imageOrColor }}" ng-if ="filter.isImage" style="display: inline-block; width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button">
                             <img style="background-color: {{ filter.imageOrColor }}; padding: 0;  display: inline-block; width: 100%; height: 65%; border-radius: 40px;" class="button" ng-if="!filter.isImage">
                             <i class="fa fa-plus" aria-hidden="true" ng-if="filters.length > 1 && filters.length != ($index + 1) "></i>
-                            <div style="font-size:100%; text-align: center; display: block; margin-top: 10px;">{{ filter.label }}</div>
+                            <div style="font-size:100%; text-align: center; display: block; margin-top: 10px;">{{ filter.label }}</div> -->
                         </div>
                     </div>
                 </div>

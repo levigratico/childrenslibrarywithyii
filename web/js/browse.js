@@ -82,10 +82,29 @@ app.factory('getBookCover', function () {
                         var tempArray = [];
                          angular.forEach(response.data, function (value, key) {
                                tempArray.push(model.bookcover(value.id, value.image, value.title, value.author, value.colorTag, value.categoryTag));
-                            })
+                            });
                          $scope.bookcovers = tempArray;
                       } else {
                         $scope.bookcovers = [];
+                      }
+                    }, function errorCallback(response) {
+                        console.log(response.statusTex);
+                    });
+            },
+
+            getSubCategories: function($http, $scope, model, url) {
+              $http({
+                        url: url,
+                        method: "GET",
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).then(function successCallback(response) {
+                      if( response.data.length != 0 ) {
+                          var tempArray = [];
+                          angular.forEach(response.data, function(value, key) {
+                              tempArray.push(model.subcategory(value.id, value.name, value.image));
+                          });
+                          $scope.subcategories = tempArray;
+                      } else {
                       }
                     }, function errorCallback(response) {
                         console.log(response.statusTex);
@@ -103,6 +122,10 @@ app.factory('bookcoverModel', function () {
               category: function (idtemp, name, src, flag) {
                 return { id: idtemp, imageOrColor: src, label: name, isImage: flag }
               },
+
+              subcategory: function(idTemp, nameTemp, imageTemp) {
+                  return {id: idTemp, image: imageTemp, name: nameTemp }
+              }
 
             }
 });
@@ -123,6 +146,8 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
     $scope.firstSetOfBooks = [];
     $scope.bookcovers = [];
     $scope.filters = [];
+    $scope.subcategories = [];
+    $scope.selectedCategoryId;
     angular.element(document).ready(function () {
         getBookCover.paginate($http, 0, $scope, bookcoverModel);
     });
@@ -188,6 +213,15 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
           getBookCover.remove($http, $scope, bookcoverModel, url);
         }
 
+    };
+
+
+    $scope.getSubCategories = function(el) {
+        var elem = angular.element(el.currentTarget);
+        var id = angular.element(elem.children()[0]).val();
+        $scope.selectedCategoryId = id;
+        var url = "/childrenslibrarywithyii/web/index.php/browsebook/getsubcategories?id=" + id;
+        getBookCover.getSubCategories($http, $scope, bookcoverModel, url);
     };
 
 

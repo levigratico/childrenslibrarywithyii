@@ -16,6 +16,7 @@ use yii\helpers\Url;
 use app\models\TblColor;
 use app\models\TblCategory;
 use app\models\TblBookCover;
+use app\models\TblCategoryContent;
 
 
 class BrowsebookController extends Controller
@@ -92,6 +93,18 @@ class BrowsebookController extends Controller
        $id = Yii::$app->request->get("id");
        $query = "SELECT * FROM tbl_book_cover WHERE CATEGORYCONTENT_ID LIKE '%". $id ."%'";
        $this->findInBookCoverTbl($query, "CATEGORYCONTENT_ID", $id);
+     }
+
+     function actionGetsubcategories() {
+        $id = Yii::$app->request->get("id");
+        $query = TblCategoryContent::find()->select([
+                                                      "id" => "CATEGORYCONTENT_ID",
+                                                    "name" => "CATEGORYCONTENT_NAME",
+                                                   "image" => "CATEGORYCONTENT_IMAGE"
+                                                    ])
+                                                  ->where(["IS_ACTIVE" => 1, "CATEGORY_ID" => $id])->all();
+        echo json_encode($query);                                            
+
      }
 
 
