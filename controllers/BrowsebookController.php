@@ -17,6 +17,7 @@ use app\models\TblColor;
 use app\models\TblCategory;
 use app\models\TblBookCover;
 use app\models\TblCategoryContent;
+use app\models\TblBookContent;
 
 
 class BrowsebookController extends Controller
@@ -78,7 +79,8 @@ class BrowsebookController extends Controller
         $this->layout = "bookdescriptionlayout";
         $id = Yii::$app->request->get("id");
         $data = TblBookCover::findOne($id);
-        return $this->render("description", ["description" => $data ]);
+        $boocontent = TblBookContent::find()->where(["BOOKCOVER_ID" => $id])->all();
+        return $this->render("description", ["description" => $data, "bookcontent" => $boocontent]);
         
      }
 

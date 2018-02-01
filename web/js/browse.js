@@ -152,6 +152,10 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
         getBookCover.paginate($http, 0, $scope, bookcoverModel);
     });
 
+    angular.element(document.querySelector("#bookscontainer")).bind("scroll", function() {
+      console.log("levi");
+    });
+
     $scope.filter = function(el) {
        var elem = angular.element(el.currentTarget);
        var id = angular.element(elem.children()[0]).val();
@@ -223,6 +227,8 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
         var url = "/childrenslibrarywithyii/web/index.php/browsebook/getsubcategories?id=" + id;
         getBookCover.getSubCategories($http, $scope, bookcoverModel, url);
     };
+
+
 
 
 

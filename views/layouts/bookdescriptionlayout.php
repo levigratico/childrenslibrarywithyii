@@ -28,15 +28,35 @@ AppBookSearchAsset::register($this);
     <?php $this->head() ?>
     <style type="text/css" media="screen">
         .content-slider li, .main-slider li{
-            background-color: #ed3020;
+            background-color: #aaa; 
             text-align: center;
-            color: #FFF;
         }
         .content-slider h3, .main-slider div {
             margin: 0;
         }
-        .content-slider h3 {
-            padding: 70px 0;
+
+        .content-slider {
+            margin: 0 auto;
+        }
+
+        .content-slider li {
+            display: inline-block;
+            width: 20%;
+        }
+
+
+        .content-slider li:hover {
+            opacity: 0.5;
+        }
+
+        .content-slider div {
+            padding: 0;
+            display: inline-block;
+        }
+
+        .content-slider div img {
+            height: 150px;
+            width: 70%;
         }
 
         .main-slider div {
@@ -44,9 +64,74 @@ AppBookSearchAsset::register($this);
             height: 500px;
         }
 
+        .bookcover {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .bookcover img {
+            width: 100%;
+        }
+
+
+        .bookcoverdescription, .bookcover {
+            height: 300px;
+        }
+
+        .bookcoverdescription {
+          overflow-y: auto;
+        }
+
+        .bookcoverdescription h1 {
+            text-align: center;
+        }
+
+        .bookcoverdescription p {
+            text-indent: 50px;
+            text-align: justify;
+        }
+
+        .both-side-description table tr td:first-child {
+            text-align: right;
+        }
+
+        .both-side-description table tr td:last-child {
+            text-indent: 20px;
+        }
+
+        #overlay {
+            position: fixed;
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        #text {
+            margin: 0 auto;
+            margin-top: 3%;
+            width: 60%;
+        }
+
+        .showDiv {
+            display: block !important;
+        }
+        
+
+        #main-slider li img {
+            width: 40% !important;
+        }
+
+
     </style>
 </head>
-<body style="background-image: url('images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
+<body style="background-image: url('/childrenslibrarywithyii/web/images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
 <?php $this->beginBody() ?>
 <?= $content ?>
 <?php $this->endBody() ?>

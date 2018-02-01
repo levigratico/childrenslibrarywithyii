@@ -1,57 +1,120 @@
-
 <div class="container">
+    <div id="overlay">
+        <div id="text">
+             <ul id="main-slider" class="main-slider gallery list-unstyled" style="margin: 0;">
+                <?php if (count($bookcontent)): ?>
+                  <?php foreach ($bookcontent as $value): ?>
+                    <li data-thumb="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>"> 
+                        <img src="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>" />
+                    </li>
+                  <?php endforeach ?>
+                <?php endif ?>
+            </ul>
+        </div>
+    </div>
     <div class="panel panel-default" style="margin: 40px 0px;">
-        <div class="panel-heading" style="text-align: center">About the Book</div>
+        <div class="panel-heading" style="text-align: center; background-color: #1ab7ea; color: white"><h1>About the Book</h1></div>
             <div class="panel-body">
                 <div class="row" style="margin: 0 0px; margin-bottom: 10px;">
-                    <div class="col-lg-6" style="border: 1px solid red">
-                        1
+                    <div class="col-lg-5">
+                        <div class="bookcover">
+                            <img src="/childrenslibrarywithyii/web/upload_bookcover/<?= $description->BOOKCOVER_IMAGE?>">
+                        </div>
                     </div>
-                    <div class="col-lg-6" style="border: 1px solid red;">
-                        2
+                    <div class="col-lg-7 bookcoverdescription">
+                        <h1><b><?= $description->BOOK_TITLE; ?></b></h1>
+                        <p><?= $description->BOOK_SUMMARY; ?></p>
+                        <div class="row">
+                            <div class="col-lg-5 col-lg-offset-1 both-side-description">
+                                <table>
+                                    <tr>
+                                       <td>
+                                           <b>Author:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->BOOK_AUTHOR ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>Publisher:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->BOOK_PUBLISHER ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>Illustrator:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->BOOK_ILLUSTRATOR ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>Pablication Date:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->BOOK_PUBLICATIONDATE ?>
+                                       </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-lg-5 both-side-description">
+                                 <table>
+                                    <tr>
+                                       <td>
+                                           <b>Number of page:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->BOOKCOUNT_PAGES ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>ISBN:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->ISBN ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>Library Code:</b>
+                                       </td>
+                                       <td>
+                                           <?= $description->CODELIBRARY ?>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                           <b>Location: </b>
+                                       </td>
+                                       <td>
+                                           <?= $description->LOCATION ?>
+                                       </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <ul id="main-slider" class="main-slider" style="margin-bottom: 10px; display: none">
-                    <li>
-                        <div>1</div>
-                    </li>
-                    <li>
-                        <div>2</div>
-                    </li>
-                    <li>
-                        <div>3</div>
-                    </li>
-                    <li>
-                        <div>4</div>
-                    </li>
-                    <li>
-                        <div>5</div>
-                    </li>
-                    <li>
-                        <div>6</div>
-                    </li>
-                </ul>
                 <ul id="content-slider" class="content-slider">
-                    <li>
-                        <h3>1</h3>
-                    </li>
-                    <li>
-                        <h3>2</h3>
-                    </li>
-                    <li>
-                        <h3>3</h3>
-                    </li>
-                    <li>
-                        <h3>4</h3>
-                    </li>
-                    <li>
-                        <h3>5</h3>
-                    </li>
-                    <li>
-                        <h3>6</h3>
-                    </li>
+                    <?php if (count($bookcontent)): ?>
+                        <?php $count = 0; ?>
+                      <?php foreach ($bookcontent as $value): ?>
+                        <li class="thumbnail" data-id="<?= $count++; ?>">
+                            <div>
+                                <img src="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>">
+                            </div>
+                        </li>
+                      <?php endforeach ?>
+                        
+                    <?php endif ?>
                 </ul>
             </div>
-        <div class="panel-footer"></div>
+        <div class="panel-footer" style="background-color: #1ab7ea"></div>
     </div>
 </div>
