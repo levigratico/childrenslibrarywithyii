@@ -67,6 +67,7 @@ AppBookSearchAsset::register($this);
         .bookcover {
             width: 50%;
             margin: 0 auto;
+            cursor: pointer;
         }
 
         .bookcover img {
@@ -126,6 +127,33 @@ AppBookSearchAsset::register($this);
 
         #main-slider li img {
             width: 40% !important;
+        }
+
+        .middle {
+          transition: .5s ease;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          text-align: center;
+        }
+
+        .bookcover-container:hover .image {
+          opacity: 0.3;
+        }
+
+        .bookcover-container:hover .middle {
+          opacity: 1;
+        }
+
+        .text {
+          background-color: #4CAF50;
+          color: white;
+          font-size: 16px;
+          padding: 16px 32px;
+          cursor: pointer;
         }
 
 

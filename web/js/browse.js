@@ -148,12 +148,24 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
     $scope.filters = [];
     $scope.subcategories = [];
     $scope.selectedCategoryId;
+
+    $scope.showLoading = false;
+
+
     angular.element(document).ready(function () {
         getBookCover.paginate($http, 0, $scope, bookcoverModel);
     });
 
+    var count = 0;
     angular.element(document.querySelector("#bookscontainer")).bind("scroll", function() {
-      console.log("levi");
+      var elem = document.querySelector("#bookscontainer");
+      var elementBottom = elem.scrollLeft + elem.offsetWidth;
+      var elementWidth = elem.scrollWidth; 
+      if(elementBottom >= elementWidth) {
+          $scope.showLoading = true;
+      }
+   
+
     });
 
     $scope.filter = function(el) {

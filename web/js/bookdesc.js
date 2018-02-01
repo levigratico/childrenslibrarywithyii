@@ -33,5 +33,11 @@ $(document).ready(function(){
 		slider.goToSlide(index);
 	}); 
 
+	$(document).on('click', '#readmore', function() {
+		$("#overlay").show();  
+	});
+
+	
+
 });
 

@@ -48,6 +48,9 @@
                                     <div style="text-align: center; font-size: 100%">{{ bookcover.title }}</div>
                                     <div style="text-align: center; font-size: 100%">{{ bookcover.author }}</div>
                             </div>
+                            <!-- <div ng-show="showLoading" style="width: 200px; display: inline-block; padding-right: 10px; cursor: pointer; height: 200px;">
+                                <div class="loader" style="margin: 0 auto; margin-bottom: 10px;"></div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

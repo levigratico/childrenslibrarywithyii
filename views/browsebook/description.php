@@ -16,9 +16,12 @@
         <div class="panel-heading" style="text-align: center; background-color: #1ab7ea; color: white"><h1>About the Book</h1></div>
             <div class="panel-body">
                 <div class="row" style="margin: 0 0px; margin-bottom: 10px;">
-                    <div class="col-lg-5">
+                    <div class="col-lg-5 bookcover-container">
                         <div class="bookcover">
                             <img src="/childrenslibrarywithyii/web/upload_bookcover/<?= $description->BOOKCOVER_IMAGE?>">
+                        </div>
+                        <div class="middle">
+                          <div class="text" id="readmore">Read More</div>
                         </div>
                     </div>
                     <div class="col-lg-7 bookcoverdescription">
