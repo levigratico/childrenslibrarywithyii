@@ -110,18 +110,18 @@ class TblbookcoverController extends Controller
         $model = new TblBookCover();
     
         
-        if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
            // save the tag value of description field
             $POST_VARIABLE=Yii::$app->request->post('TblBookCover');
             $request = $POST_VARIABLE['CATEGORYCONTENT_ID']; 
             $tags = implode(',', $request);
             $model->CATEGORYCONTENT_ID = $tags;
-            $model->save();
+            // $model->save();
 
             $request2 = $POST_VARIABLE['COLOR_VALUE']; 
             $tags2 = implode(',', $request2);
             $model->COLOR_VALUE = $tags2;
-            $model->save();
+            // $model->save();
             
 
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
@@ -259,7 +259,7 @@ class TblbookcoverController extends Controller
 
 
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             $request2 = $POST_VARIABLE['COLOR_VALUE']; 
             $tags2 = implode(',', $request2);
             $model->COLOR_VALUE = $tags2;
@@ -282,7 +282,7 @@ class TblbookcoverController extends Controller
         $model = $this->findModel($id);
         $model->scenario = "update-image";
          
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             $image = UploadedFile::getInstance($model,'BOOKCOVER_IMAGE');
 
             $basepath = Yii::getAlias('@app');

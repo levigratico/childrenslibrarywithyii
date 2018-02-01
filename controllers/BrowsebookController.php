@@ -22,8 +22,6 @@ use app\models\TblBookContent;
 
 class BrowsebookController extends Controller
 {
-
-
     public function actionIndex()
      {
          Yii::$app->view->title = "Childrens Library";
