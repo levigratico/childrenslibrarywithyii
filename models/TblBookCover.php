@@ -35,6 +35,8 @@ class TblBookCover extends \yii\db\ActiveRecord
     public $title;
     public $author;
     public $image;
+    public $colorTag;
+    public $categoryTag;
 
 
     /**
