@@ -112,12 +112,14 @@ AppBookSearchAsset::register($this);
             background-color: rgba(0,0,0,0.5);
             z-index: 2;
             cursor: pointer;
+             overflow-y: auto;
+             z-index: 1000;
         }
 
         #text {
             margin: 0 auto;
             margin-top: 3%;
-            width: 60%;
+            width: 80%;
         }
 
         .showDiv {
