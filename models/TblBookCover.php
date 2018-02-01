@@ -55,7 +55,7 @@ class TblBookCover extends \yii\db\ActiveRecord
         return [
             [['CATEGORY_ID', 'CATEGORYCONTENT_ID', 'BOOK_TITLE'], 'required'],
             [['CATEGORY_ID', 'LANGUAGE_ID', 'BOOKCOUNT_PAGES', 'IS_ACTIVE'], 'integer'],
-            [['BOOK_SUMMARY'], 'string'],
+            [['BOOK_SUMMARY','BOOK_DESCRIPTION'], 'string'],
             [['BOOK_TITLE', 'BOOK_AUTHOR', 'BOOK_ILLUSTRATOR', 'BOOK_PUBLISHER', 'BOOKCOVER_IMAGE','ISBN','LOCATION','CODELIBRARY'], 'string', 'max' => 100],
             [['BOOK_PUBLICATIONDATE'], 'string', 'max' => 20],
             [['CATEGORY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => TblCategory::className(), 'targetAttribute' => ['CATEGORY_ID' => 'CATEGORY_ID']],

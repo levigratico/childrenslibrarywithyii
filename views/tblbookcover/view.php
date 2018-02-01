@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= DetailView::widget([
                             'model' => $model,
                             'attributes' => [
-                                'BOOK_DESCRIPTION:ntext',
+                                'BOOK_DESCRIPTION',
                             ],
                         ]) ?>
             </p>
