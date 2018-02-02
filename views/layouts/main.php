@@ -252,7 +252,7 @@ AppAsset::register($this);
                             <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-save"></i>&nbsp; Import CSV </span>', ['batch/create'])?>
                         </li>
                        <li>
-                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-th-list"></i>&nbsp;  Library Website</span>', ['searchbook/index'])?>
+                            <?= Html::a('<span class="hide-menu"><i class="glyphicon glyphicon-th-list"></i>&nbsp;  Library Website</span>', ['browsebook/index'], ['target' => '_blank'])?>
                         </li>
                        
                        

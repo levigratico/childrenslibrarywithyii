@@ -55,12 +55,12 @@
                     </div>
                 </div>
                 <div style="height: 120px; margin-bottom: 20px;">
-                    <i class="fa fa-angle-left" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; left: 20px; bottom: 35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
-                    <i class="fa fa-angle-right" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; right: 20px; bottom:35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
-                    <div style="height: 100%; margin: 0 5%; overflow-x: scroll; overflow-y: hidden; white-space:nowrap">
-                        <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-repeat="subcategory in subcategories" ng-click="filter($event)">
+                    <i class="fa fa-angle-left" id="arrowleft" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; left: 20px; bottom: 35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
+                    <i class="fa fa-angle-right" id="arrowright" aria-hidden="true" style="color: #1ab7ea;font-size: 70px; right: 20px; bottom:35px; vertical-align: middle; line-height: 65px; position: absolute"></i>
+                    <div style="height: 100%; margin: 0 5%; overflow-x: scroll; overflow-y: hidden; white-space:nowrap" >
+                        <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-repeat="subcategory in subcategories" ng-click="filter($event)" id="subcatscroll">
                             <input type="hidden" value="{{ subcategory.id }}">
-                             <img src="/childrenslibrarywithyii/web/upload_categorycontentimages/{{ (subcategory.image == '') ? 'categorycontent_81-gator-dancing.jpg' : subcategory.image }}"style="display: inline-block; width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button">
+                             <img src="/childrenslibrarywithyii/web/upload_categorycontentimages/{{ (subcategory.image == '') ? 'blank.jpg' : subcategory.image }}"style="display: inline-block; width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button">
                             <div style="font-size:100%; text-align: center; display: block; margin-top: 10px;">{{ subcategory.name }}</div>
                         </div>
                     </div>
@@ -68,4 +68,24 @@
             </div>
         </div>
  </div>
+
+ <?php
+$this->registerJs('
+    $(document).ready(function(){
+        $("#arrowleft").click(function(){
+
+            $("html,body").animate({
+                scrollTop: $("#subcatscroll").offset().left},
+                "slow");
+
+        });
+
+        $("#arrowright").click(function(){
+            alert("Hello2");
+        });
+    });
+
+    ');
+
+ ?>
 
