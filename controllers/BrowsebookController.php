@@ -26,13 +26,13 @@ class BrowsebookController extends Controller
      {
          Yii::$app->view->title = "Childrens Library";
          $this->layout = "browsebooklayout";
-         $colors = TblColor::find()->select([
-                                                "id" => "COLOR_ID",
-                                              "name" =>"COLOR_NAME",
-                                             "value" => "COLOR_VALUE"
-                                            ])
-                                   ->where(["IS_ACTIVE" => 1])
-                                   ->all();
+         // $colors = TblColor::find()->select([
+         //                                        "id" => "COLOR_ID",
+         //                                      "name" =>"COLOR_NAME",
+         //                                     "value" => "COLOR_VALUE"
+         //                                    ])
+         //                           ->where(["IS_ACTIVE" => 1])
+         //                           ->all();
          $category = TblCategory::find()->select([
                                                       "id" => "CATEGORY_ID",
                                                    "title" => "CATEGORY_TITLE",
@@ -42,11 +42,12 @@ class BrowsebookController extends Controller
                                         ->where(["IS_ACTIVE" => 1])
                                         ->all();
 
-
-         return $this->render("browse", [
-                                                  "colors"  => $colors,
-                                              "categories"  => $category
-                                              ]);
+         array_unshift($category, (object) [           "id" => 0,
+                                                    "title" => "Colors",
+                                                    "image" => "color", 
+                                              "description" => ""
+                                  ]);                           
+         return $this->render("browse", [ "categories"  => $category ]);
      }
 
 
