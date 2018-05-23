@@ -92,7 +92,8 @@ app.factory('getBookCover', function () {
                     });
             },
 
-            getSubCategories: function($http, $scope, model, url) {
+            getSubCategories: function($http, $scope, model, url, $timeout, callback) {
+              $scope.showLoader = true;
               $http({
                         url: url,
                         method: "GET",
@@ -101,11 +102,27 @@ app.factory('getBookCover', function () {
                       if( response.data.length != 0 ) {
                           var tempArray = [];
                           angular.forEach(response.data, function(value, key) {
-                              tempArray.push(model.subcategory(value.id, value.name, value.image));
+                              var imageOrColor = value.image == null ? value.value : value.image;
+                              var isImage = value.image == null ? false : true;
+                              tempArray.push(model.subcategory(value.id, value.name, imageOrColor, isImage));
                           });
-                          $scope.subcategories = tempArray;
-                      } else {
+
+
+                          $scope.forPagination = tempArray;
+                          var lastIndex = $scope.forPagination.length > $scope.maximum ? $scope.maximum : $scope.forPagination.length;
+                          $scope.showNext = $scope.forPagination.length > $scope.maximum ? true : false;
+                          $scope.subcategories = $scope.forPagination.slice(0, lastIndex);
+                          $scope.lastIndexPaginate = lastIndex;
+                          $scope.firstIndexPaginate = 0;
+                          $scope.paginateCount = $scope.subcategories.length;
                       }
+
+                      $timeout(function(){
+                        $scope.showLoader = false;
+                        callback();
+                      }, 2000); 
+
+
                     }, function errorCallback(response) {
                         console.log(response.statusTex);
                     });
@@ -123,8 +140,8 @@ app.factory('bookcoverModel', function () {
                 return { id: idtemp, imageOrColor: src, label: name, isImage: flag }
               },
 
-              subcategory: function(idTemp, nameTemp, imageTemp) {
-                  return {id: idTemp, image: imageTemp, name: nameTemp }
+              subcategory: function(idTemp, nameTemp, imageTemp, flag) {
+                  return {id: idTemp, image: imageTemp, name: nameTemp, isImage: flag }
               }
 
             }
@@ -142,7 +159,12 @@ app.directive('myBookList', [ 'redirectToDescription', '$location', function (re
     }
 }]);
 
-app.controller('bookCoverController', function ($scope, $http, getBookCover, bookcoverModel) {
+app.controller('bookCoverController', function ($scope, $http, getBookCover, bookcoverModel, $timeout) {
+    $scope.maximum = 30;
+    $scope.lastIndexPaginate = 0;
+    $scope.firstIndexPaginate = 0;
+    $scope.paginateCount = 0;
+    $scope.forPagination = [];
     $scope.firstSetOfBooks = [];
     $scope.bookcovers = [];
     $scope.filters = [];
@@ -187,6 +209,8 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
 
           getBookCover.filter($http, $scope, bookcoverModel, id, false);
        }
+
+       hideModal();
     };
 
 
@@ -233,18 +257,46 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
 
 
     $scope.getSubCategories = function(el) {
+        var filter = document.getElementById('filtered');
+        filter.style.display = "none";
         var elem = angular.element(el.currentTarget);
         var id = angular.element(elem.children()[0]).val();
         $scope.selectedCategoryId = id;
+        $scope.subcategories = [];
         var url = "/childrenslibrarywithyii/web/index.php/browsebook/getsubcategories?id=" + id;
-        getBookCover.getSubCategories($http, $scope, bookcoverModel, url);
+        getBookCover.getSubCategories($http, $scope, bookcoverModel, url, $timeout, showModal);
+
     };
 
 
+    $scope.hideModal = function(el) {
+      hideModal();
+    };
 
+    $scope.nextCategory = function(el) {
+        $scope.showPrev = $scope.showPrev ? $scope.showPrev : true;
+        var tempObject = paginateArray($scope.forPagination, $scope.lastIndexPaginate, true, $scope.maximum);
+        $scope.paginateCount = $scope.paginateCount + tempObject.values.length;
 
+        if($scope.paginateCount == ($scope.forPagination.length - 1)) {
+          $scope.showNext = false;
+        }
+        $scope.lastIndexPaginate = tempObject.lastIndex;
+        $scope.firstIndexPaginate = tempObject.firstIndex;
+        $scope.subcategories = tempObject.values;
+    };
 
-
+    $scope.prevCategory = function(el) {
+      $scope.showNext = $scope.showNext ? $scope.showNext : true;
+      var tempObject = paginateArray($scope.forPagination, $scope.firstIndexPaginate, false, $scope.maximum);
+      $scope.paginateCount = $scope.paginateCount - $scope.subcategories.length;
+      if($scope.paginateCount == $scope.maximum) {
+          $scope.showPrev = false;
+      }
+      $scope.lastIndexPaginate = tempObject.lastIndex;
+      $scope.firstIndexPaginate = tempObject.firstIndex;
+      $scope.subcategories = tempObject.values;
+    };
 });
 
 function doSomethingIfNotExist(obj, id, isImage, callback) {
@@ -263,3 +315,50 @@ function doSomethingIfNotExist(obj, id, isImage, callback) {
         }
     }
 }
+
+function showModal() {
+  var modal = document.getElementById('my-modal');
+  modal.style.display = "block";
+}
+
+function hideModal() {
+  var modal = document.getElementById('my-modal');
+  var filter = document.getElementById('filtered');
+  modal.style.display = "none";
+  filter.style.display = "block";
+}
+
+
+function paginateArray(arrayObject, lastorFirstindex, isNext, maximum) {
+  var size = arrayObject.length;
+  var lastIndexPaginate = 0;
+  var firstIndexPaginate = 0;
+  var result = null;
+  if(isNext) {
+    //next
+    firstIndexPaginate = lastorFirstindex + 1;
+    if(firstIndexPaginate < size) {
+        lastIndexPaginate = maximum + lastorFirstindex;
+        if(lastIndexPaginate > size) {
+          lastIndexPaginate = firstIndexPaginate + (size  - firstIndexPaginate);
+        }
+        result = arrayObject.slice(firstIndexPaginate, (lastIndexPaginate + 1));
+    }
+  } else {
+    // prev
+    lastIndexPaginate = lastorFirstindex - 1;
+    if(lastIndexPaginate > 0) {
+      firstIndexPaginate = lastorFirstindex - maximum;
+       result = arrayObject.slice((firstIndexPaginate - 1), lastIndexPaginate);
+    }
+  }
+
+  if(result != null) {
+     return { firstIndex:  firstIndexPaginate, lastIndex: lastIndexPaginate, values: result };
+  }
+
+  return null;
+ 
+}
+
+

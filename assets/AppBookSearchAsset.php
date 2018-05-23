@@ -21,17 +21,17 @@ class AppBookSearchAsset extends AssetBundle
                     'template/vendor/bootstrap/css/bootstrap.min.css',
                     'template/vendor/font-awesome/css/font-awesome.min.css',
                     'https://fonts.googleapis.com/css?family=Asap',
-                    'css/lightslider.css'
+                    'css/lightslider.css',
+                    'css/custom-modal.css'
                   ];
 
     public $js = [
                     'js/jquery.min.js',
                     'template/vendor/bootstrap/js/bootstrap.min.js',
-                    'js/angular.min.js',
+                    'js/angular.js',
                     'js/browse.js',
                     'js/lightslider.js',
                     'js/bookdesc.js'
-
                  ];
 
 }

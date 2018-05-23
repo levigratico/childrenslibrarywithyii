@@ -97,15 +97,31 @@ class BrowsebookController extends Controller
      }
 
      function actionGetsubcategories() {
+
+
         $id = Yii::$app->request->get("id");
-        $query = TblCategoryContent::find()->select([
+        $query = null;
+        switch ($id) {
+          case 0:
+            $query = TblColor::find()->select([
+                                                "id" => "COLOR_ID",
+                                              "name" =>"COLOR_NAME",
+                                             "value" => "COLOR_VALUE"
+                                            ])
+                                   ->where(["IS_ACTIVE" => 1])
+                                   ->all();
+            break;
+          default:
+            $query = TblCategoryContent::find()->select([
                                                       "id" => "CATEGORYCONTENT_ID",
                                                     "name" => "CATEGORYCONTENT_NAME",
                                                    "image" => "CATEGORYCONTENT_IMAGE"
                                                     ])
                                                   ->where(["IS_ACTIVE" => 1, "CATEGORY_ID" => $id])->all();
-        echo json_encode($query);                                            
+            break;
+        }
 
+        echo json_encode($query);
      }
 
 
