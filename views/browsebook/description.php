@@ -11,7 +11,10 @@
       </ul>
     </div>
     <div class="panel panel-default" style="margin: 40px 0px;">
-        <div class="panel-heading" style="text-align: center; background-color: #1ab7ea; color: white"><h1>About the Book</h1></div>
+        <div class="panel-heading" style="text-align: center; background-color: #1ab7ea; color: white">
+          <a class="btn" style="float: left; font-size: 50px" href="http://localhost/childrenslibrarywithyii/web/browsebook"><i class="fa fa-home"></i></a>
+          <h1>About the Book</h1>
+        </div>
             <div class="panel-body">
                 <div class="row" style="margin: 0 0px; margin-bottom: 10px;">
                     <div class="col-lg-5 bookcover-container">

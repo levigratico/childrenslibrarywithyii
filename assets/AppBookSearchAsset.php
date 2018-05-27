@@ -24,6 +24,7 @@ class AppBookSearchAsset extends AssetBundle
                     'css/lightslider.css',
                     'css/custom-modal.css',
                     'css/viewer.css',
+                    'css/prettify.css',
                   ];
 
     public $js = [
@@ -33,7 +34,9 @@ class AppBookSearchAsset extends AssetBundle
                     'js/browse.js',
                     'js/lightslider.js',
                     'js/bookdesc.js',
-                    'js/viewer.js'
+                    'js/viewer.js',
+                    'js/prettify.js',    
+                    'js/jquery.slimscroll.js'
                  ];
 
 }

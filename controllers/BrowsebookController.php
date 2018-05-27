@@ -50,6 +50,22 @@ class BrowsebookController extends Controller
          return $this->render("browse", [ "categories"  => $category ]);
      }
 
+     function actionSearchbytitle() {
+      $search = Yii::$app->request->get("search");
+      $query = TblBookCover::find()->select([
+                                                     "id" => "BOOKCOVER_ID",
+                                                  "image" => "BOOKCOVER_IMAGE",
+                                                  "title" => "BOOK_TITLE",
+                                                 "author" => "BOOK_AUTHOR",
+                                               "colorTag" => "COLOR_VALUE",
+                                            "categoryTag" => "CATEGORYCONTENT_ID"
+                                               ])
+                                     ->where(["=", "IS_ACTIVE", 1])
+                                     ->where(["like", "BOOK_TITLE", $search])->all();
+
+      echo json_encode($query);
+     }
+
 
 
      function actionPaginatebook()

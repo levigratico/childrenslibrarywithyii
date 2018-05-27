@@ -13,23 +13,47 @@ app.factory('redirectToDescription', function () {
 app.factory('getBookCover', function () {
     return {
         paginate: function ($http, offset, $scope, model) {
+                    var url = "/childrenslibrarywithyii/web/index.php/browsebook/paginatebook" + "?offset=" + offset;
                     $http({
-                        url: "/childrenslibrarywithyii/web/index.php/browsebook/paginatebook",
+                        url: url,
                         method: "GET",
-                        data: {"offset": offset},
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                     }).then(function successCallback(response) {
                         if( response.data.length != 0 ) {
                             angular.forEach(response.data, function (value, key) {
                                $scope.bookcovers.push(model.bookcover(value.id, value.image, value.title, value.author, value.colorTag, value.categoryTag));
                             })
-
-                            $scope.firstSetOfBooks = $scope.bookcovers;
+                        } else {
+                          $scope.showLoading = false;
+                          $scope.enableScroll = false;
                         }
                     }, function errorCallback(response) {
                         console.log(response.statusTex);
                     });
                 },
+
+        search: function($http, input, $scope, model) {
+          var url = "/childrenslibrarywithyii/web/index.php/browsebook/searchbytitle" + "?search=" + input;
+          $http({
+                        url: url,
+                        method: "GET",
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).then(function successCallback(response) {
+                      if( response.data.length != 0 ) {
+                        var temp = [];
+                         angular.forEach(response.data, function (value, key) {
+                           temp.push(model.bookcover(value.id, value.image, value.title, value.author, value.colorTag, value.categoryTag));
+                         });
+
+                         $scope.bookcovers = temp;
+                         $scope.showLoading = false;
+                         $scope.enableScroll = false;
+                      }
+                    }, function errorCallback(response) {
+                        console.log(response.statusTex);
+                    });
+
+        },
 
           filter: function($http, $scope, model, id, isImage) {
                 var url = (isImage) ? "/childrenslibrarywithyii/web/index.php/browsebook/queryfilterbycategory" : "/childrenslibrarywithyii/web/index.php/browsebook/queryfilterbycolor";
@@ -170,27 +194,33 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
     $scope.filters = [];
     $scope.subcategories = [];
     $scope.selectedCategoryId;
+    $scope.enableScroll = true;
 
-    $scope.showLoading = false;
+    $scope.showLoading = true;
 
 
     angular.element(document).ready(function () {
         getBookCover.paginate($http, 0, $scope, bookcoverModel);
+        $scope.firstSetOfBooks = $scope.bookcovers;
+        $('#bookscontainer').slimscroll({
+          height: '320px',
+          axis: 'x'
+        }).bind('slimscrollX', function(e, pos) {
+              switch(pos) {
+                case 'right': 
+                  if($scope.enableScroll) {
+                    getBookCover.paginate($http, $scope.bookcovers.length, $scope, bookcoverModel);
+                  }
+                break;
+              }
+
+        });
     });
 
     var count = 0;
-    angular.element(document.querySelector("#bookscontainer")).bind("scroll", function() {
-      var elem = document.querySelector("#bookscontainer");
-      var elementBottom = elem.scrollLeft + elem.offsetWidth;
-      var elementWidth = elem.scrollWidth; 
-      if(elementBottom >= elementWidth) {
-          $scope.showLoading = true;
-      }
-   
-
-    });
 
     $scope.filter = function(el) {
+       $scope.enableScroll = false;
        var elem = angular.element(el.currentTarget);
        var id = angular.element(elem.children()[0]).val();
        var name = angular.element(elem.children()[2]).text();
@@ -201,7 +231,6 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
           });
 
           getBookCover.filter($http, $scope, bookcoverModel, id, true);
-
        } else {
            doSomethingIfNotExist($scope.filters, id, false, function() {
             $scope.filters.push(bookcoverModel.category(id, name, imgOrColor.css("background-color"), false));
@@ -209,10 +238,26 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
 
           getBookCover.filter($http, $scope, bookcoverModel, id, false);
        }
-
        hideModal();
+       $scope.showLoading = false;
     };
 
+
+    $scope.actionNext = function() {
+     $('#bookscontainer').slimscroll({ scrollByX: '50px'});
+    };
+
+    $scope.actionPrev = function() {
+      $('#bookscontainer').slimscroll({ scrollByX: '-50px'});
+    };
+
+
+    $scope.undoSearch = function() {
+       $scope.bookcovers = $scope.firstSetOfBooks;
+       $scope.showLoading = true;
+       $scope.enableScroll = true;
+       $scope.filters = [];
+    };
 
     $scope.remove = function (el) {
         var elem = angular.element(el.currentTarget);
@@ -225,6 +270,8 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
 
         if($scope.filters.length == 0) {
             $scope.bookcovers = $scope.firstSetOfBooks;
+            $scope.showLoading = true;
+            $scope.enableScroll = true;
         } else {
             var url = "/childrenslibrarywithyii/web/index.php/browsebook/queryfilterwhenremove?";
             var counter = 0; 
@@ -251,6 +298,7 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
               url += "idOfColor=" + counterForColor.join(",");
             } 
           getBookCover.remove($http, $scope, bookcoverModel, url);
+          $scope.showLoading = false;
         }
 
     };
@@ -266,6 +314,16 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
         var url = "/childrenslibrarywithyii/web/index.php/browsebook/getsubcategories?id=" + id;
         getBookCover.getSubCategories($http, $scope, bookcoverModel, url, $timeout, showModal);
 
+    };
+
+    $scope.showSearchInput = function() {
+      var modal = document.getElementById("my-second-modal");
+      modal.style.display = "block";
+    };
+
+    $scope.hideSearchInput = function() {
+      var modal = document.getElementById("my-second-modal");
+      modal.style.display = "none";
     };
 
 
@@ -296,6 +354,14 @@ app.controller('bookCoverController', function ($scope, $http, getBookCover, boo
       $scope.lastIndexPaginate = tempObject.lastIndex;
       $scope.firstIndexPaginate = tempObject.firstIndex;
       $scope.subcategories = tempObject.values;
+    };
+
+    $scope.searhAction = function() {
+        var input = $scope.search;
+        $scope.search = "";
+        getBookCover.search($http, input, $scope, bookcoverModel);
+        $scope.hideSearchInput();
+
     };
 });
 

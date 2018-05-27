@@ -75,6 +75,29 @@ AppBookSearchAsset::register($this);
           100% { transform: rotate(360deg); }
         }
 
+        .btn-group .btn-fab {
+          position: fixed !important;
+          right: 40px;
+        }
+
+        .btn.btn-fab {
+          border-radius: 100%;
+          border-top-left-radius: 100%;
+          border-top-right-radius: 100% !important;
+          border-bottom-right-radius: 100% !important;
+          border-bottom-left-radius: 100%;
+        }
+
+        #main{
+          font-size: 50px;
+          top: 100px;
+        }
+
+        #default {
+          font-size: 50px;
+          top: 200px;
+        }
+
     </style>
 </head>
 <body style="background-image: url('/childrenslibrarywithyii/web/images/bg_clouds.png'); background-repeat: repeat-x;  background-position: 50% 0;">
