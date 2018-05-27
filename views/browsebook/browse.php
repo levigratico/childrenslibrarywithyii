@@ -9,7 +9,7 @@
               <div class="panel panel-default custom-modal-content">
                 <span class="custom-close" ng-click="hideModal()">&times;</span>
                 <div class="custom-modal-body">
-                  <center>
+                  <center>  
                      <div style="width:8%; height: 100px; margin: 10px; display: inline-block;" ng-repeat="subcategory in subcategories" ng-click="filter($event)" id="subcatscroll">
                             <input type="hidden" value="{{ subcategory.id }}">
                              <img src="/childrenslibrarywithyii/web/upload_categorycontentimages/{{ (subcategory.image == '') ? 'blank.jpg' : subcategory.image }}"style="display: inline-block; width: 100%; height: 65%; padding: 0; border-radius: 40px;" class="button" ng-if="subcategory.isImage">

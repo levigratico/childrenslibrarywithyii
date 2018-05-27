@@ -22,7 +22,8 @@ class AppBookSearchAsset extends AssetBundle
                     'template/vendor/font-awesome/css/font-awesome.min.css',
                     'https://fonts.googleapis.com/css?family=Asap',
                     'css/lightslider.css',
-                    'css/custom-modal.css'
+                    'css/custom-modal.css',
+                    'css/viewer.css',
                   ];
 
     public $js = [
@@ -31,7 +32,8 @@ class AppBookSearchAsset extends AssetBundle
                     'js/angular.js',
                     'js/browse.js',
                     'js/lightslider.js',
-                    'js/bookdesc.js'
+                    'js/bookdesc.js',
+                    'js/viewer.js'
                  ];
 
 }

@@ -102,14 +102,14 @@ AppBookSearchAsset::register($this);
 
         #overlay {
             position: fixed;
-            display: block;
+            display: none;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.5);
+
             z-index: 2;
             cursor: pointer;
              overflow-y: auto;
@@ -126,10 +126,6 @@ AppBookSearchAsset::register($this);
             display: block !important;
         }
         
-
-        #main-slider li img {
-            width: 40% !important;
-        }
 
         .middle {
           transition: .5s ease;
@@ -157,6 +153,39 @@ AppBookSearchAsset::register($this);
           padding: 16px 32px;
           cursor: pointer;
         }
+
+
+        .vSAction > .vSPrev {
+            background-position: 0 0;
+            left: 10px;
+            background-image: url(../../images/icons8-chevron-left-100.png);
+        }
+
+        .vSAction > .vSNext {
+            background-position: -100px 0;
+            right: 10px;
+            background-image: url(../../images/icons8-chevron-right-100.png);
+        }
+
+        .vSAction > a {
+            width: 100px;
+            display: block;
+            top: 40%;
+            height: 100px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 99;
+            margin-top: -16px;
+            opacity: 0.5;
+            -webkit-transition: opacity 0.35s linear 0s;
+            transition: opacity 0.35s linear 0s
+        }
+
+        .vSAction > a:hover {
+            opacity: 1;
+        }
+
+            
 
 
     </style>

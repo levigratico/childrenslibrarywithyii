@@ -1,16 +1,14 @@
 <div class="container">
     <div id="overlay">
-        <div id="text">
-             <ul id="main-slider" class="main-slider gallery list-unstyled" style="margin: 0;">
-                <?php if (count($bookcontent)): ?>
-                  <?php foreach ($bookcontent as $value): ?>
-                    <li data-thumb="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>"> 
-                        <img src="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>" />
-                    </li>
-                  <?php endforeach ?>
-                <?php endif ?>
-            </ul>
-        </div>
+       <ul id="pictures" class="main-slider gallery list-unstyled" style="margin: 0;">
+          <?php if (count($bookcontent)): ?>
+            <?php foreach ($bookcontent as $value): ?>
+              <li data-original="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>"> 
+                  <img src="/childrenslibrarywithyii/web/upload_bookcontentimages/<?= $value->BOOKPAGES_IMAGE ?>" />
+              </li>
+            <?php endforeach ?>
+          <?php endif ?>
+      </ul>
     </div>
     <div class="panel panel-default" style="margin: 40px 0px;">
         <div class="panel-heading" style="text-align: center; background-color: #1ab7ea; color: white"><h1>About the Book</h1></div>
